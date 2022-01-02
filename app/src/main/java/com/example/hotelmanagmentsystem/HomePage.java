@@ -20,4 +20,9 @@ public class HomePage extends AppCompatActivity {
         Intent intent = new Intent(this, ServicesList.class);
         startActivity(intent);
     }
+
+    public void login(View view) {
+        Intent intent = new Intent(this, Login.class);
+        startActivity(intent);
+    }
 }

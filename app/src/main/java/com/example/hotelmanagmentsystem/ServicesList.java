@@ -45,7 +45,6 @@ public class ServicesList extends AppCompatActivity {
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         servicesList[i] = gson.fromJson(response.getJSONObject(i).toString(), Service.class);
-                        System.out.println();
                     } catch (JSONException exception) {
                         Log.d("Error", exception.toString());
                     }
@@ -61,6 +60,7 @@ public class ServicesList extends AppCompatActivity {
             }
         });
 
+        //TODO:make it a singleton class
         queue.add(request);
     }
 }

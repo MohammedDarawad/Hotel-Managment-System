@@ -1,9 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login">
+    android:orientation="vertical"
+    android:background="#FAFAFA"
+    android:gravity="center"
+>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="28sp"
+        android:gravity="center"
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:textColor="#F9AC36"
+        android:text="Login" />
+
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="20dp"
+        android:hint="Email Address"
+        android:paddingLeft="15sp"
+        android:textColor="#000000"
+        android:textColorHint="#9C9C9C" />
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="20dp"
+        android:hint="Password"
+        android:paddingLeft="15sp"
+        android:textColor="#000000"
+        android:textColorHint="#9C9C9C" />
+
+    <CheckBox
+        android:id="@+id/cbRememberLogin"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="20dp"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="15dp"
+        android:text="Remember Login"
+        android:textColor="#000000" />
+
+    <Button
+        android:id="@+id/angry_btn"
+        android:layout_width="match_parent"
+        android:layout_margin="20dp"
+        android:text="Submit"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        android:layout_height="60dp"
+        android:shadowColor="#FAFAFA"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="14"
+        android:onClick="login"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:textStyle="bold"
+        android:textColor="#F9AC36"
+        android:text="Sign Up"
+        android:onClick="signup"/>
+
+</LinearLayout>
