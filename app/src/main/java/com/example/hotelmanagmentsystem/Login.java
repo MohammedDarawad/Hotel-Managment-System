@@ -18,7 +18,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+import com.example.hotelmanagmentsystem.model.RequestQueueSingleton;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -29,6 +29,7 @@ import java.util.Map;
 
 public class Login extends AppCompatActivity {
     private final String apiURL = "http://10.0.2.2/login.php";
+    private RequestQueue queue;
     private String emailAddress;
     private String password;
     private EditText etEmail;
@@ -37,8 +38,7 @@ public class Login extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private Gson gson;
-    private boolean isValidLogin = false;
-
+    private JSONObject responceJsonObject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,19 +54,12 @@ public class Login extends AppCompatActivity {
         gson = new Gson();
     }
 
-    public void login(View view) {
+    public void login(View view) throws JSONException {
         emailAddress = etEmail.getText().toString();
         password = etPassword.getText().toString();
 
-        if (validateInputs() && validateLogin()) {
-            if (cbRemeberLogin.isChecked()) {
-                editor.putString("emailAddress", "emailAddress");
-                editor.commit();
-                Toast.makeText(this, "correct", Toast.LENGTH_SHORT).show();
-            }
-            Intent intent = new Intent(this, HomePage.class);
-            intent.putExtra("emailAddress", emailAddress);
-            startActivity(intent);
+        if (validateInputs()) {
+            validateLogin();
         }
     }
 
@@ -91,21 +84,19 @@ public class Login extends AppCompatActivity {
         return true;
     }
 
-    private boolean validateLogin() {
-        RequestQueue queue = Volley.newRequestQueue(Login.this);
+    private void validateLogin() {
         StringRequest request = new StringRequest(Request.Method.POST, apiURL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    if (jsonObject.has("isValid")) {
-                        if (jsonObject.getBoolean("isValid")) {
-                            isValidLogin = true;
+                    responceJsonObject = new JSONObject(response);
+                    if (responceJsonObject.has("isValid")) {
+                        if (responceJsonObject.getBoolean("isValid")) {
+                            loginIsValid();
                         } else {
                             etPassword.setText("");
                             Toast.makeText(Login.this,
-                                    jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
-                            isValidLogin = false;
+                                    responceJsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                         }
                     }
                 } catch (JSONException e) {
@@ -132,7 +123,20 @@ public class Login extends AppCompatActivity {
             }
         };
 
-        queue.add(request);
-        return isValidLogin;
+        RequestQueueSingleton.getInstance(this).addToRequestQueue(request);
+    }
+
+    private void loginIsValid() {
+        if (cbRemeberLogin.isChecked()) {
+            editor.putString("emailAddress", "emailAddress");
+            editor.commit();
+            Toast.makeText(Login.this, "correct", Toast.LENGTH_SHORT).show();
+        }
+        Intent intent = new Intent(Login.this, HomePage.class);
+        intent.putExtra("emailAddress", emailAddress);
+        //System.out.println(responceJsonObject.toString());
+        //intent.putExtra("userType", String.valueOf(responceJsonObject.getInt("userType")));
+        //System.out.println(String.valueOf(responceJsonObject.getInt("userType")));
+        startActivity(intent);
     }
 }
