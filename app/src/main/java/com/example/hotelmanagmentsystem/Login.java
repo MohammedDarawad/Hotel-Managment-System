@@ -39,6 +39,7 @@ public class Login extends AppCompatActivity {
     private SharedPreferences.Editor editor;
     private Gson gson;
     private JSONObject responceJsonObject;
+    private String errorMessage_Login = "No Such User Exists";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,13 +91,13 @@ public class Login extends AppCompatActivity {
             public void onResponse(String response) {
                 try {
                     responceJsonObject = new JSONObject(response);
-                    if (responceJsonObject.has("isValid")) {
-                        if (responceJsonObject.getBoolean("isValid")) {
+                    if (responceJsonObject.has("user")) {
+                        if (!responceJsonObject.isNull("user")) {
                             loginIsValid();
                         } else {
                             etPassword.setText("");
                             Toast.makeText(Login.this,
-                                    responceJsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                                    errorMessage_Login, Toast.LENGTH_LONG).show();
                         }
                     }
                 } catch (JSONException e) {
@@ -126,17 +127,21 @@ public class Login extends AppCompatActivity {
         RequestQueueSingleton.getInstance(this).addToRequestQueue(request);
     }
 
-    private void loginIsValid() {
+    private void loginIsValid() throws JSONException {
         if (cbRemeberLogin.isChecked()) {
             editor.putString("emailAddress", "emailAddress");
             editor.commit();
-            Toast.makeText(Login.this, "correct", Toast.LENGTH_SHORT).show();
         }
-        Intent intent = new Intent(Login.this, HomePage.class);
+        Intent intent = null;
+        int userType = responceJsonObject.getJSONObject("user").getInt("userType");
+        if (userType == 0) {
+            intent = new Intent(Login.this, HomePage.class);
+        } else if (userType == 1) {
+            intent = new Intent(Login.this, HomePage.class);
+        } else if (userType == 2) {
+            intent = new Intent(Login.this, HomePage.class);
+        }
         intent.putExtra("emailAddress", emailAddress);
-        //System.out.println(responceJsonObject.toString());
-        //intent.putExtra("userType", String.valueOf(responceJsonObject.getInt("userType")));
-        //System.out.println(String.valueOf(responceJsonObject.getInt("userType")));
         startActivity(intent);
     }
 }
