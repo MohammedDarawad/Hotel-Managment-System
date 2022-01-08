@@ -28,4 +28,11 @@
         android:onClick="btnClickSignUp"
         android:text="sign up" />
 
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Reserved Rooms List"
+        android:onClick="showReservedRoomsList"/>
+
 </LinearLayout>

@@ -1,10 +1,10 @@
 package com.example.hotelmanagmentsystem;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class HomePage extends AppCompatActivity {
 
@@ -12,8 +12,6 @@ public class HomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-
-
     }
 
     public void servicesList(View view) {
@@ -32,4 +30,8 @@ public class HomePage extends AppCompatActivity {
     }
 
 
+    public void showReservedRoomsList(View view) {
+        Intent intent = new Intent(this, ReserveList.class);
+        startActivity(intent);
+    }
 }

@@ -137,7 +137,7 @@ public class Login extends AppCompatActivity {
         if (userType == 0) {//if user is admin
             intent = new Intent(Login.this, HomePage.class);
         } else if (userType == 1) {//if user is receptionist
-            intent = new Intent(Login.this, HomePage.class);
+            intent = new Intent(Login.this, ReceptionestHomePage.class);
         } else if (userType == 2) {//if user is customer
             intent = new Intent(Login.this, HomePage.class);
         }
