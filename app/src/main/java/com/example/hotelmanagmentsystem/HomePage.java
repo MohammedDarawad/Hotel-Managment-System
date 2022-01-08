@@ -32,6 +32,7 @@ public class HomePage extends AppCompatActivity {
 
     public void showReservedRoomsList(View view) {
         Intent intent = new Intent(this, ReserveList.class);
+        intent.putExtra("uId", "4");
         startActivity(intent);
     }
 }
