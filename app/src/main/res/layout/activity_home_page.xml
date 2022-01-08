@@ -11,14 +11,21 @@
         android:id="@+id/button3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button"
-        android:onClick="servicesList"/>
+        android:onClick="servicesList"
+        android:text="Services List" />
 
     <Button
         android:id="@+id/button4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button"
-        android:onClick="login"/>
+        android:onClick="login"
+        android:text="Log  in" />
+
+    <Button
+        android:id="@+id/btnSignIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="btnClickSignUp"
+        android:text="sign up" />
 
 </LinearLayout>

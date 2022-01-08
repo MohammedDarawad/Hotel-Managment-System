@@ -25,4 +25,11 @@ public class HomePage extends AppCompatActivity {
         Intent intent = new Intent(this, Login.class);
         startActivity(intent);
     }
+
+    public void btnClickSignUp(View view) {
+        Intent intent = new Intent(this, Sign_Up.class);
+        startActivity(intent);
+    }
+
+
 }
