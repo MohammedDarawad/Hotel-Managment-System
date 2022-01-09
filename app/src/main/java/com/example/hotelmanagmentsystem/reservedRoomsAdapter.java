@@ -1,6 +1,7 @@
 package com.example.hotelmanagmentsystem;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,20 +41,22 @@ public class reservedRoomsAdapter
         CardView cardView = holder.cardView;
         String rId = reservedRoomsList[position].getrId() + "";
         ImageView imageView = cardView.findViewById(R.id.ivRoomImage);
+
         //TODO: fix the image link
         Glide.with(context).load("http://10.0.2.2/images/rooms/" + rId + "/1.jpg").into(imageView);
+
         TextView tvRoomNumber = cardView.findViewById(R.id.tvRoomNumber);
         tvRoomNumber.setText(rId);
         TextView tvReservedUntil = cardView.findViewById(R.id.tvReservedUntil);
         SimpleDateFormat formatter = new SimpleDateFormat(
                 "dd/MM/yyyy");
         tvReservedUntil.setText(formatter.format(reservedRoomsList[position].getendDate()));
-        cardView.setOnClickListener(new View.OnClickListener() {
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("test click");
-//                Intent intent = new Intent(this,RoomMoreInfo.class);
-//                startActivity(intent);
+                Intent intent = new Intent(v.getContext(), ReservedRoomMoreInfo.class);
+                intent.putExtra("rId", rId);
+                v.getContext().startActivity(intent);
             }
         });
     }
@@ -61,50 +64,6 @@ public class reservedRoomsAdapter
     @Override
     public int getItemCount() {
         return reservedRoomsList.length;
-    }
-
-    private void handleRequest(int sId, int rId) {
-//        StringRequest request = new StringRequest(Request.Method.POST, apiURL, new Response.Listener<String>() {
-//            @Override
-//            public void onResponse(String response) {
-//                try {
-//                    JSONObject responceJsonObject = new JSONObject(response);
-//                    if (responceJsonObject.has("error")) {
-//                        System.out.println(responceJsonObject.toString());
-//                        if (!responceJsonObject.getBoolean("error")) {
-//                            Toast.makeText(context.getApplicationContext(), responceJsonObject.getString("message"), Toast.LENGTH_SHORT).show();
-//                            btRequest.setVisibility(View.GONE);
-//                            tvRequested.setVisibility(View.VISIBLE);
-//                        } else {
-//                            Toast.makeText(context.getApplicationContext(),
-//                                    "Some thing wrong happened", Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Log.d("Error", error.toString());
-//            }
-//        }) {
-//            @Override
-//            protected Map<String, String> getParams() {
-//                Map<String, String> params = new HashMap<String, String>();
-//                params.put("sId", sId + "");
-//                params.put("rId", rId + "");
-//                return params;
-//            }
-//
-//            @Override
-//            public String getBodyContentType() {
-//                return "application/x-www-form-urlencoded; charset=UTF-8";
-//            }
-//        };
-//
-//        RequestQueueSingleton.getInstance(context.getApplicationContext()).addToRequestQueue(request);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
