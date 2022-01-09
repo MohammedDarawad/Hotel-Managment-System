@@ -8,12 +8,12 @@ import android.view.View;
 import android.widget.TextView;
 
 public class Manegar extends AppCompatActivity {
-TextView txtChangeRooms;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manegar);
-        txtChangeRooms=findViewById(R.id.txtChangeInfo);
+
     }
 
     public void onClickAddRoom(View view) {
@@ -26,6 +26,11 @@ TextView txtChangeRooms;
 
     public void onClickAddReseption(View view) {
         Intent intent = new Intent(this, AddReception.class);
+        startActivity(intent);
+    }
+
+    public void onClickViewReseption(View view) {
+        Intent intent = new Intent(this, ViewReception.class);
         startActivity(intent);
     }
 }

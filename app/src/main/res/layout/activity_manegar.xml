@@ -4,30 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/manegar_ground"
+    android:background="@drawable/gray_background"
     tools:context=".Manegar">
 
     <Button
         android:id="@+id/button5"
         android:layout_width="226dp"
         android:layout_height="49dp"
-        android:layout_marginTop="4dp"
+        android:layout_margin="15dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="@color/design_default_color_primary"
         android:onClick="onClickAddRoom"
         android:text="Add Room"
+        android:textColor="@color/cardview_light_background"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <Button
         android:id="@+id/button6"
         android:layout_width="226dp"
         android:layout_height="49dp"
-        android:layout_marginTop="8dp"
+        android:layout_margin="15dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="@color/purple_500"
         android:onClick="onClickViewRooms"
         android:text="View Rooms"
+        android:textColor="@color/cardview_light_background"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,31 +43,45 @@
         android:id="@+id/button7"
         android:layout_width="226dp"
         android:layout_height="50dp"
+        android:layout_margin="15dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="#E91E63"
         android:onClick="onClickAddReseption"
-        android:text="Add Resiption"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        android:text="Add Reception"
+        android:textColor="@color/design_default_color_on_secondary"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button6" />
+
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="226dp"
+        android:layout_height="50dp"
+        android:layout_margin="15dp"
+        android:backgroundTint="#E91E63"
+        android:onClick="onClickViewReseption"
+        android:text="View Reception"
+        android:textColor="@color/black"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button6"
-        app:layout_constraintVertical_bias="0.097" />
+        app:layout_constraintTop_toBottomOf="@+id/button7" />
 
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="424dp"
-        android:layout_height="440dp"
-        android:background="@drawable/scroll_background"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_marginTop="16dp"
+        android:text="Manager"
+        android:textColor="#009688"
+        android:textSize="34sp"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck">
-
-        <TextView
-            android:id="@+id/txtChangeInfo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-    </ScrollView>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

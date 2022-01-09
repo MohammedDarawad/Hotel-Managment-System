@@ -13,6 +13,9 @@
         android:theme="@style/Theme.HotelManagmentSystem"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ViewReception"
+            android:exported="false" />
+        <activity
             android:name=".AddReception"
             android:exported="false" />
         <activity
