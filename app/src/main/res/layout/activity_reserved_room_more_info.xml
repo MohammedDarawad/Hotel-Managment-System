@@ -25,25 +25,25 @@
 
     <Button
         android:id="@+id/button8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="134dp"
+        android:layout_height="98dp"
         android:layout_below="@+id/slSlider"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="322dp"
-        android:layout_marginEnd="38dp"
-        android:text="Request Service"
-        android:onClick="requestServices"/>
+        android:layout_marginTop="173dp"
+        android:layout_marginEnd="59dp"
+        android:onClick="requestServices"
+        android:text="Request Service" />
 
     <Button
-        android:id="@+id/btCjeckInOut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/btCheckInOut"
+        android:layout_width="128dp"
+        android:layout_height="100dp"
         android:layout_below="@+id/slSlider"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="316dp"
-        android:text="Check IN"
-        android:onClick="checkInOut"/>
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="173dp"
+        android:onClick="checkInOut"
+        android:text="Check In" />
 
     <androidx.gridlayout.widget.GridLayout
         android:layout_width="match_parent"
@@ -56,12 +56,12 @@
             android:id="@+id/textView16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
+            android:text="Room Number:"
             app:layout_column="0"
             app:layout_row="0" />
 
         <TextView
-            android:id="@+id/textView17"
+            android:id="@+id/tvRid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
@@ -90,28 +90,28 @@
             android:id="@+id/textView20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            app:layout_column="4"
+            android:text="Floor:"
+            app:layout_column="3"
             app:layout_row="0" />
 
         <TextView
-            android:id="@+id/textView21"
+            android:id="@+id/tvFloor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
-            app:layout_column="5"
+            app:layout_column="4"
             app:layout_row="0" />
 
         <TextView
             android:id="@+id/textView22"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
+            android:text="Room Type"
             app:layout_column="0"
             app:layout_row="1" />
 
         <TextView
-            android:id="@+id/textView23"
+            android:id="@+id/tvRoomType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
@@ -122,17 +122,25 @@
             android:id="@+id/textView24"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Capacity"
+            app:layout_column="3"
+            app:layout_row="1" />
+
+        <TextView
+            android:id="@+id/tvCapacity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="TextView"
             app:layout_column="4"
             app:layout_row="1" />
 
         <TextView
-            android:id="@+id/textView25"
+            android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
-            app:layout_column="5"
-            app:layout_row="1" />
+            app:layout_column="0"
+            app:layout_row="2" />
     </androidx.gridlayout.widget.GridLayout>
 
 
