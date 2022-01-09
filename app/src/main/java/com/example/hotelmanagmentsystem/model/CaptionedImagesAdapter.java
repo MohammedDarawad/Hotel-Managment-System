@@ -30,8 +30,8 @@ public class CaptionedImagesAdapter
         extends RecyclerView.Adapter<CaptionedImagesAdapter.ViewHolder> {
 
     private final String apiURL = "http://10.0.2.2/request-service.php";
-    private Service[] servicesList;
-    private Context context;
+    private final Service[] servicesList;
+    private final Context context;
     private Button btRequest;
     private TextView tvRequested;
 
@@ -52,12 +52,12 @@ public class CaptionedImagesAdapter
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         CardView cardView = holder.cardView;
-        ImageView imageView = (ImageView) cardView.findViewById(R.id.imageView);
+        ImageView imageView = cardView.findViewById(R.id.ivRoomImage);
         Glide.with(context).load(servicesList[position].getImageURL()).into(imageView);
-        TextView tvName = (TextView) cardView.findViewById(R.id.tvName);
-        tvName.setText(servicesList[position].getName().toString());
+        TextView tvName = cardView.findViewById(R.id.tvName);
+        tvName.setText(servicesList[position].getName());
         tvRequested = cardView.findViewById(R.id.tvRequested);
-        btRequest = (Button) cardView.findViewById(R.id.btRequest);
+        btRequest = cardView.findViewById(R.id.btRequest);
         btRequest.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 handleRequest(holder.getAdapterPosition() + 1, 1);
@@ -115,7 +115,7 @@ public class CaptionedImagesAdapter
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private CardView cardView;
+        private final CardView cardView;
 
         public ViewHolder(CardView cardView) {
             super(cardView);

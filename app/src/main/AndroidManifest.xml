@@ -31,7 +31,7 @@
             android:name=".ServicesList"
             android:exported="false" />
         <activity
-            android:name=".RoomMoreInfo"
+            android:name=".ReservedRoomMoreInfo"
             android:exported="false" />
         <activity
             android:name=".Login"
