@@ -134,11 +134,11 @@ public class Login extends AppCompatActivity {
         }
         Intent intent = null;
         int userType = responceJsonObject.getJSONObject("user").getInt("userType");
-        if (userType == 0) {//if user is admin
+        if (userType == 0) {
+            intent = new Intent(Login.this, Manegar.class);
+        } else if (userType == 1) {
             intent = new Intent(Login.this, HomePage.class);
-        } else if (userType == 1) {//if user is receptionist
-            intent = new Intent(Login.this, ReceptionestHomePage.class);
-        } else if (userType == 2) {//if user is customer
+        } else if (userType == 2) {
             intent = new Intent(Login.this, HomePage.class);
         }
         intent.putExtra("emailAddress", emailAddress);
