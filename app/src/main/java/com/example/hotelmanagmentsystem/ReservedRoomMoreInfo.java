@@ -68,11 +68,6 @@ public class ReservedRoomMoreInfo extends AppCompatActivity {
         getReservationInformation();
         getImageURLs();
         getRoomInformation();
-
-        if (isCheckedIn) {
-            btCheckInOut.setText("Check Out");
-            btCheckInOut.setBackgroundColor(Color.RED);
-        }
     }
 
     private void getImageURLs() {
@@ -144,6 +139,11 @@ public class ReservedRoomMoreInfo extends AppCompatActivity {
 
     private void getReservationInformation() {
         isCheckedIn = intent.getBooleanExtra("isCheckedIn", false);
+        //System.out.println(isCheckedIn);
+        if (isCheckedIn) {
+            btCheckInOut.setText("Check Out");
+            btCheckInOut.setBackgroundColor(Color.RED);
+        }
         tvStartDate.setText(intent.getStringExtra("startDate"));
         tvEndDate.setText(intent.getStringExtra("endDate"));
     }

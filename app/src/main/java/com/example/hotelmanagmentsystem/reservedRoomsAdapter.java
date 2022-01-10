@@ -34,7 +34,7 @@ public class reservedRoomsAdapter
     private final ReservedRoom[] reservedRoomsList;
     private final Context context;
     private final Gson gson = new Gson();
-    private String imageApiURL = "http://10.0.2.2/get-images.php?rId=";
+    private String imageApiURL = "";
 
     public reservedRoomsAdapter(ReservedRoom[] reservedRoomsList, Context context) {
         this.reservedRoomsList = reservedRoomsList;
@@ -55,7 +55,7 @@ public class reservedRoomsAdapter
         String rId = reservedRoomsList[position].getrId() + "";
         ImageView imageView = cardView.findViewById(R.id.ivRoomImage);
 
-        imageApiURL += rId + "&getAllImages=0";
+        imageApiURL = "http://10.0.2.2/get-images.php?rId=" + rId + "&getAllImages=0";
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, imageApiURL,
                 null, new Response.Listener<JSONArray>() {
             @Override
@@ -83,6 +83,9 @@ public class reservedRoomsAdapter
         SimpleDateFormat formatter = new SimpleDateFormat(
                 "dd/MM/yyyy");
         tvReservedUntil.setText(formatter.format(reservedRoomsList[position].getendDate()));
+
+        System.out.println(reservedRoomsList[holder.getAdapterPosition()].toString());
+
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,6 +94,7 @@ public class reservedRoomsAdapter
                 intent.putExtra("startDate", formatter.format(reservedRoomsList[holder.getAdapterPosition()].getstartDate()));
                 intent.putExtra("endDate", formatter.format(reservedRoomsList[holder.getAdapterPosition()].getendDate()));
                 intent.putExtra("isCheckedIn", reservedRoomsList[holder.getAdapterPosition()].isCheckedIn());
+                //System.out.println(reservedRoomsList[holder.getAdapterPosition()].isCheckedIn());
                 v.getContext().startActivity(intent);
             }
         });

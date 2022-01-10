@@ -53,21 +53,23 @@ public class ReserveList extends AppCompatActivity {
                 @Override
                 public void onResponse(JSONArray response) {
                     reservedRoomsList = new ReservedRoom[response.length()];
+                    System.out.println(response.toString());
                     for (int i = 0; i < response.length(); i++) {
                         try {
                             reservedRoomsList[i] = gson.fromJson(response.getJSONObject(i).toString(), ReservedRoom.class);
+                            System.out.println(reservedRoomsList[i].isCheckedIn() + " test");
                         } catch (JSONException exception) {
                             Log.d("Error", exception.toString());
                         }
                     }
-                    if (reservedRoomsList.length != 0) {
-                        rvReservedRoomsList.setLayoutManager(new LinearLayoutManager(ReserveList.this));
-                        reservedRoomsAdapter adapter = new reservedRoomsAdapter(reservedRoomsList, getApplicationContext());
-                        rvReservedRoomsList.setAdapter(adapter);
-                    } else {
-                        rvReservedRoomsList.setVisibility(View.GONE);
-                        tvError.setVisibility(View.VISIBLE);
-                    }
+//                    if (reservedRoomsList.length != 0) {
+//                        rvReservedRoomsList.setLayoutManager(new LinearLayoutManager(ReserveList.this));
+//                        reservedRoomsAdapter adapter = new reservedRoomsAdapter(reservedRoomsList, getApplicationContext());
+//                        rvReservedRoomsList.setAdapter(adapter);
+//                    } else {
+//                        rvReservedRoomsList.setVisibility(View.GONE);
+//                        tvError.setVisibility(View.VISIBLE);
+//                    }
                 }
             }, new Response.ErrorListener() {
                 @Override
