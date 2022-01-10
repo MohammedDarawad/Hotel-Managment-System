@@ -43,10 +43,10 @@ public class ViewRoomAdapter extends RecyclerView.Adapter<ViewReceptionAdapter.V
     private final Gson gson = new Gson();
     private String imageApiURL = "http://10.0.2.2/get-images.php?rId=";
     private int i=1;
-    public ViewRoomAdapter(ArrayList<String> captions1, Context context) {
+    private String rId;
+    public ViewRoomAdapter(ArrayList<String> captions1,Context context) {
         this.captions1 = captions1;
         this.context=context;
-
     }
 
     @Override
@@ -66,30 +66,35 @@ public class ViewRoomAdapter extends RecyclerView.Adapter<ViewReceptionAdapter.V
         txt.setText(captions1.get(position));
         String split[] = captions1.get(position).split("\n");
         String split2[]= split[0].split(" ");
-        String rId = split2[2];
-        imageApiURL += rId + "&getAllImages=1";
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, imageApiURL,
-                null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                ImageURLData[] imageURL = new ImageURLData[response.length()];
-                try {
-                    imageURL[0] = gson.fromJson(response.getJSONObject(0).toString(), ImageURLData.class);
-                    Glide.with(context).load(imageURL[0].getURL()).into(imageView);
-                } catch (JSONException exception) {
-                    Log.d("Error", exception.toString());
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("Error", error.toString());
-            }
-        }) {
-        };
-        RequestQueueSingleton.getInstance(context).addToRequestQueue(request);
+        rId = split2[2];
+        setImage(imageView);
     }
+     private void setImage(ImageView imageView){
+        String url = "http://10.0.2.2/get-images.php?rId=" + rId + "&getAllImages=0";
+         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url,
+                 null, new Response.Listener<JSONArray>() {
+             @Override
+             public void onResponse(JSONArray response) {
+                 ImageURLData[] imageURL = new ImageURLData[response.length()];
+                 try {
+                     imageURL[0] = gson.fromJson(response.getJSONObject(0).toString(), ImageURLData.class);
+                     Glide.with(context).load(imageURL[0].getURL()).into(imageView);
 
+                 } catch (JSONException exception) {
+                     Log.d("Error", exception.toString());
+                 }
+             }
+         }, new Response.ErrorListener() {
+             @Override
+             public void onErrorResponse(VolleyError error) {
+                 Log.d("Error", error.toString());
+             }
+         }) {
+         };
+         RequestQueueSingleton.getInstance(context).addToRequestQueue(request);
+
+
+     }
     @Override
     public int getItemCount() {
         return captions1.size();

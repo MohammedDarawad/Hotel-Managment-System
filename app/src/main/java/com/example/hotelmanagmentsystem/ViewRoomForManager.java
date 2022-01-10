@@ -31,7 +31,8 @@ public class ViewRoomForManager extends AppCompatActivity {
     private RequestQueue queue2;
     private Gson gson;
     private int i=1;
-    private ImageURLData[] imageURLs;
+    private String imageApiURL = "http://10.0.2.2/get-images.php?rId=";
+    private String URL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +63,7 @@ public class ViewRoomForManager extends AppCompatActivity {
                     }
                 }
                 recycler.setLayoutManager(new LinearLayoutManager(ViewRoomForManager.this));
-                ViewRoomAdapter adapter = new ViewRoomAdapter(caption1, getApplicationContext());
+                ViewRoomAdapter adapter = new ViewRoomAdapter(caption1,getApplicationContext());
                 recycler.setAdapter(adapter);
             }
         }, new Response.ErrorListener() {
