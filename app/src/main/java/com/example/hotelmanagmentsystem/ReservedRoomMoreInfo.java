@@ -76,7 +76,7 @@ public class ReservedRoomMoreInfo extends AppCompatActivity {
     }
 
     private void getImageURLs() {
-        imageApiURL += rId;
+        imageApiURL += rId + "&getAllImages=1";
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, imageApiURL,
                 null, new Response.Listener<JSONArray>() {
