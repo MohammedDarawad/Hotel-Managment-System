@@ -6,12 +6,12 @@ public class ReservedRoom {
     private int id;
     private int rId;
     private int uId;
-    private boolean isCheckedIn;
+    private int isCheckedIn;
     private boolean isCheckedOut;
     private Date startDate;
     private Date endDate;
 
-    public ReservedRoom(int id, int rId, int uId, boolean isCheckedIn, boolean isCheckedOut, Date startDate, Date endDate) {
+    public ReservedRoom(int id, int rId, int uId, int isCheckedIn, boolean isCheckedOut, Date startDate, Date endDate) {
         this.id = id;
         this.rId = rId;
         this.uId = uId;
@@ -45,11 +45,11 @@ public class ReservedRoom {
         this.uId = uId;
     }
 
-    public boolean isCheckedIn() {
+    public int isCheckedIn() {
         return isCheckedIn;
     }
 
-    public void setCheckedIn(boolean checkedIn) {
+    public void setCheckedIn(int checkedIn) {
         isCheckedIn = checkedIn;
     }
 

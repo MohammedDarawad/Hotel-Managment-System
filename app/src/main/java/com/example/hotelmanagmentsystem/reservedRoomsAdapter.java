@@ -84,17 +84,16 @@ public class reservedRoomsAdapter
                 "dd/MM/yyyy");
         tvReservedUntil.setText(formatter.format(reservedRoomsList[position].getendDate()));
 
-        System.out.println(reservedRoomsList[holder.getAdapterPosition()].toString());
-
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), ReservedRoomMoreInfo.class);
+                Intent intent = new Intent(context, ReservedRoomMoreInfo.class);
+                intent.putExtra("uId", reservedRoomsList[holder.getAdapterPosition()].getuId());
                 intent.putExtra("rId", rId);
                 intent.putExtra("startDate", formatter.format(reservedRoomsList[holder.getAdapterPosition()].getstartDate()));
                 intent.putExtra("endDate", formatter.format(reservedRoomsList[holder.getAdapterPosition()].getendDate()));
                 intent.putExtra("isCheckedIn", reservedRoomsList[holder.getAdapterPosition()].isCheckedIn());
-                //System.out.println(reservedRoomsList[holder.getAdapterPosition()].isCheckedIn());
+                intent.putExtra("id", reservedRoomsList[holder.getAdapterPosition()].getId());
                 v.getContext().startActivity(intent);
             }
         });
