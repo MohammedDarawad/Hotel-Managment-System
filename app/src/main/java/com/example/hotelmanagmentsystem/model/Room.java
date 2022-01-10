@@ -54,4 +54,15 @@ public class Room {
     public void setReserved(boolean reserved) {
         isReserved = reserved;
     }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "rId=" + rId +
+                ", floor=" + floor +
+                ", capacity=" + capacity +
+                ", type='" + type + '\'' +
+                ", isReserved=" + isReserved +
+                '}';
+    }
 }

@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +20,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.hotelmanagmentsystem.model.ImageURLData;
 import com.example.hotelmanagmentsystem.model.RequestQueueSingleton;
-import com.example.hotelmanagmentsystem.model.ReservedRoom;
+import com.example.hotelmanagmentsystem.model.Room;
 import com.google.gson.Gson;
 import com.smarteist.autoimageslider.SliderView;
 
@@ -27,28 +29,50 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ReservedRoomMoreInfo extends AppCompatActivity {
+    private String RoomApiURL = "http://10.0.2.2/get-room-info.php?rId=";
     private String imageApiURL = "http://10.0.2.2/get-images.php?rId=";
-    private final String RoomApiURL = "http://10.0.2.2/get-room-info.php?rId=";
-    private String ReservedRoomApiURL = "http://10.0.2.2/get-reserved-room-info.php?rId=";
     private ImageURLData[] imageURLs;
     private SliderView sliderView;
     private Gson gson;
     private Intent intent;
     private String rId;
     private Button btCheckInOut;
+    private TextView tvRoomNumber;
+    private TextView tvFloor;
+    private TextView tvRoomType;
+    private TextView tvRoomCapacity;
+    private TextView tvStartDate;
+    private TextView tvEndDate;
+    private Boolean isCheckedIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reserved_room_more_info);
         intent = getIntent();
+        gson = new Gson();
+
         rId = intent.getStringExtra("rId");
 
         sliderView = findViewById(R.id.slSlider);
         btCheckInOut = findViewById(R.id.btCheckInOut);
 
-        gson = new Gson();
+        tvRoomNumber = findViewById(R.id.tvRoomNumber);
+
+        tvFloor = findViewById(R.id.tvRoomFloor);
+        tvRoomType = findViewById(R.id.tvRoomType);
+        tvRoomCapacity = findViewById(R.id.tvRoomCapacity);
+        tvStartDate = findViewById(R.id.tvStartDate);
+        tvEndDate = findViewById(R.id.tvEndDate);
+
+        getReservationInformation();
         getImageURLs();
+        getRoomInformation();
+
+        if (isCheckedIn) {
+            btCheckInOut.setText("Check Out");
+            btCheckInOut.setBackgroundColor(Color.RED);
+        }
     }
 
     private void getImageURLs() {
@@ -75,7 +99,6 @@ public class ReservedRoomMoreInfo extends AppCompatActivity {
             }
         }) {
         };
-
         RequestQueueSingleton.getInstance(this).addToRequestQueue(request);
     }
 
@@ -91,9 +114,6 @@ public class ReservedRoomMoreInfo extends AppCompatActivity {
         sliderView.setAutoCycle(true);
 
         sliderView.startAutoCycle();
-
-        getRoomInformation();
-        getReservationInformation();
     }
 
     public void requestServices(View view) {
@@ -103,11 +123,7 @@ public class ReservedRoomMoreInfo extends AppCompatActivity {
     }
 
     public void checkInOut(View view) {
-        if ("Check In".compareTo(btCheckInOut.getText().toString()) == 0) {
-            btCheckInOut.setText("Check Out");
-            btCheckInOut.setBackgroundColor(Color.RED);
-
-        } else {
+        if (isCheckedIn) {
             new AlertDialog.Builder(this)
                     .setTitle("Conformation")
                     .setMessage("Are you sure you want to check out\n You wont be able to check in again")
@@ -119,17 +135,31 @@ public class ReservedRoomMoreInfo extends AppCompatActivity {
                     .setNegativeButton(android.R.string.no, null)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
+        } else {
+            btCheckInOut.setText("Check Out");
+            btCheckInOut.setBackgroundColor(Color.RED);
+            Toast.makeText(this, "Checked In Successfully", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void getReservationInformation() {
-        ReservedRoomApiURL += rId;
-        StringRequest request = new StringRequest(Request.Method.GET, ReservedRoomApiURL, new Response.Listener<String>() {
+        isCheckedIn = intent.getBooleanExtra("isCheckedIn", false);
+        tvStartDate.setText(intent.getStringExtra("startDate"));
+        tvEndDate.setText(intent.getStringExtra("endDate"));
+    }
+
+    private void getRoomInformation() {
+        RoomApiURL += rId;
+        StringRequest request = new StringRequest(Request.Method.GET, RoomApiURL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
                     JSONObject responceJsonObject = new JSONObject(response);
-                    ReservedRoom r = gson.fromJson(responceJsonObject.toString(), ReservedRoom.class);
+                    Room r = gson.fromJson(responceJsonObject.toString(), Room.class);
+                    tvRoomNumber.setText(r.getrId() + "");
+                    tvFloor.setText(r.getFloor() + "");
+                    tvRoomType.setText(r.getType());
+                    tvRoomCapacity.setText(r.getCapacity() + "");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -141,9 +171,5 @@ public class ReservedRoomMoreInfo extends AppCompatActivity {
             }
         });
         RequestQueueSingleton.getInstance(this).addToRequestQueue(request);
-    }
-
-    private void getRoomInformation() {
-
     }
 }
