@@ -22,6 +22,8 @@ public class Manegar extends AppCompatActivity {
     }
 
     public void onClickViewRooms(View view) {
+        Intent intent = new Intent(this, ViewRoomForManager.class);
+        startActivity(intent);
     }
 
     public void onClickAddReseption(View view) {

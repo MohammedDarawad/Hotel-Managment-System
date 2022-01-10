@@ -3,12 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/activity_add_room.xml" value="0.17135416666666667" />
+        <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/activity_home_page.xml" value="0.17135416666666667" />
         <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/activity_login.xml" value="0.23854166666666668" />
         <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/activity_manegar.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/activity_reserve_list.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/activity_reserved_room_more_info.xml" value="0.23854166666666668" />
         <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/activity_services_list.xml" value="0.23072916666666668" />
+        <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/activity_sign_up.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/activity_view_reception.xml" value="0.23072916666666668" />
+        <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/activity_view_room_for_manager.xml" value="0.23854166666666668" />
         <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/card_reception.xml" value="0.264" />
+        <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/card_reserved_rooms_list.xml" value="0.23854166666666668" />
         <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/card_serviceslist.xml" value="0.23072916666666668" />
+        <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/card_view_reception.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/card_view_room_manager.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/slider_reservedroommoreinfo.xml" value="0.23854166666666668" />
         <entry key="..\:/Users/moeda/AndroidStudioProjects/HotelManagmentSystem/app/src/main/res/layout/activity_home_page.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/moeda/AndroidStudioProjects/HotelManagmentSystem/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Users/moeda/AndroidStudioProjects/HotelManagmentSystem/app/src/main/res/layout/activity_reserve_list.xml" value="0.25416666666666665" />

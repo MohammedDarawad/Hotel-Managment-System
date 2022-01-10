@@ -1,7 +1,6 @@
 package com.example.hotelmanagmentsystem;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,16 +9,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.hotelmanagmentsystem.model.RequestQueueSingleton;
 
 import org.json.JSONException;
@@ -29,18 +25,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ReceptionAdapter  extends RecyclerView.Adapter<ReceptionAdapter.ViewHolder> {
+public class ViewReceptionAdapter extends RecyclerView.Adapter<ViewReceptionAdapter.ViewHolder> {
     private ArrayList<String> captions1 = new ArrayList<>();
     private final Context context;
-    CardView card ;
-    public ReceptionAdapter(ArrayList<String> captions1,Context context) {
+    TextView txtDeleted ;
+    public ViewReceptionAdapter(ArrayList<String> captions1, Context context) {
         this.captions1 = captions1;
         this.context=context;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        CardView v = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.card_reception,
+        CardView v = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_reception,
                 parent,
                 false);
 
@@ -56,7 +52,7 @@ public class ReceptionAdapter  extends RecyclerView.Adapter<ReceptionAdapter.Vie
         String split[] = captions1.get(position).split("\n");
         String split2[]= split[0].split(" ");
         String id = split2[1];
-        card = cardView.findViewById(R.id.card_reception);
+        txtDeleted = cardView.findViewById(R.id.txtdeleted);
         btnDelete.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                  deleteReception(id);
@@ -80,7 +76,8 @@ public class ReceptionAdapter  extends RecyclerView.Adapter<ReceptionAdapter.Vie
                         System.out.println(responceJsonObject.toString());
                         if (!responceJsonObject.getBoolean("error")) {
                             Toast.makeText(context.getApplicationContext(), responceJsonObject.getString("message"), Toast.LENGTH_SHORT).show();
-                            card.setVisibility(View.GONE);
+                            btnDelete.setVisibility(View.GONE);
+                            txtDeleted.setVisibility(View.VISIBLE);
                         } else {
                             Toast.makeText(context.getApplicationContext(),
                                     "Some thing wrong happened", Toast.LENGTH_SHORT).show();
@@ -113,7 +110,7 @@ public class ReceptionAdapter  extends RecyclerView.Adapter<ReceptionAdapter.Vie
 
     }
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private CardView cardView;
+        public final CardView cardView;
 
         public ViewHolder(CardView cardView) {
             super(cardView);
