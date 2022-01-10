@@ -65,7 +65,8 @@ public class Login extends AppCompatActivity {
     }
 
     public void signup(View view) {
-        Toast.makeText(this, "signup", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, Sign_Up.class);
+        startActivity(intent);
     }
 
     private boolean validateInputs() {

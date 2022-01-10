@@ -13,7 +13,10 @@
         android:theme="@style/Theme.HotelManagmentSystem"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ViewRoomForManager"
+            android:name=".pacageViewRoom.ViewRoomMoreInfoForManager"
+            android:exported="false" />
+        <activity
+            android:name=".pacageViewRoom.ViewRoomForManager"
             android:exported="false" />
         <activity
             android:name=".ViewReception"
