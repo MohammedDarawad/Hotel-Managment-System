@@ -14,15 +14,16 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.example.hotelmanagmentsystem.model.RequestQueueSingleton;
 import com.example.hotelmanagmentsystem.model.RequestedService;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
-import org.json.JSONException;
+
+import java.util.List;
 
 public class ReceptionistManageRequests extends AppCompatActivity {
     private final Gson gson = new Gson();
     private final String apiURL = "http://10.0.2.2/get-requestedservices.php";
     private RecyclerView rvRequests;
-    private RequestedService[] requestedServicesList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +36,9 @@ public class ReceptionistManageRequests extends AppCompatActivity {
                 null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                requestedServicesList = new RequestedService[response.length()];
-                for (int i = 0; i < response.length(); i++) {
-                    try {
-                        requestedServicesList[i] = gson.fromJson(response.getJSONObject(i).toString(), RequestedService.class);
-                    } catch (JSONException exception) {
-                        Log.d("Error", exception.toString());
-                    }
-                }
+                List<RequestedService> requestedServicesList = new Gson().fromJson(response.toString(), new TypeToken<List<RequestedService>>() {
+                }.getType());
+
                 rvRequests.setLayoutManager(new LinearLayoutManager(ReceptionistManageRequests.this));
                 RequestedServicesAdapter adapter = new RequestedServicesAdapter(requestedServicesList, getApplicationContext());
                 rvRequests.setAdapter(adapter);

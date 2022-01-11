@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,16 +24,17 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class RequestedServicesAdapter extends RecyclerView.Adapter<RequestedServicesAdapter.ViewHolder> {
 
     private final String completeRequestApiURL = "http://10.0.2.2/complete-requested-service.php";
-    private final RequestedService[] requestedServicesList;
+    private final List<RequestedService> requestedServicesList;
     private final Context context;
     private final Gson gson = new Gson();
 
-    public RequestedServicesAdapter(RequestedService[] requestedServicesList, Context context) {
+    public RequestedServicesAdapter(List<RequestedService> requestedServicesList, Context context) {
         this.requestedServicesList = requestedServicesList;
         this.context = context;
     }
@@ -50,10 +52,10 @@ public class RequestedServicesAdapter extends RecyclerView.Adapter<RequestedServ
         CardView cardView = holder.cardView;
 
         TextView tvRId = cardView.findViewById(R.id.tvRId);
-        tvRId.setText(requestedServicesList[holder.getAdapterPosition()].getrId() + "");
+        tvRId.setText(requestedServicesList.get(holder.getAdapterPosition()).getrId() + "");
 
         TextView tvSId = cardView.findViewById(R.id.tvSId);
-        tvSId.setText(requestedServicesList[holder.getAdapterPosition()].getsId() + "");
+        tvSId.setText(requestedServicesList.get(holder.getAdapterPosition()).getsId() + "");
 
         Button btComplete = cardView.findViewById(R.id.btComplete);
 
@@ -71,18 +73,20 @@ public class RequestedServicesAdapter extends RecyclerView.Adapter<RequestedServ
             public void onResponse(String response) {
                 try {
                     JSONObject responceJsonObject = new JSONObject(response);
-//                    if (responceJsonObject.has("user")) {
-//                        if (!responceJsonObject.isNull("user")) {
-//                            loginIsValid();
-//                        } else {
-//                            etPassword.setText("");
-//                            Toast.makeText(Login.this,
-//                                    errorMessage_Login, Toast.LENGTH_LONG).show();
-//                        }
-//                    }
+                    if (responceJsonObject.has("hasError")) {
+                        if (!responceJsonObject.getBoolean("hasError")) {
+                            requestedServicesList.remove(position);
+                            notifyItemRemoved(position);
+                            notifyItemRangeChanged(position, getItemCount());
+                            Toast.makeText(context, responceJsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(context, responceJsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
             }
         }, new Response.ErrorListener() {
             @Override
@@ -93,7 +97,7 @@ public class RequestedServicesAdapter extends RecyclerView.Adapter<RequestedServ
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("id", position + "");
+                params.put("id", requestedServicesList.get(position).getId() + "");
                 return params;
             }
 
@@ -108,7 +112,7 @@ public class RequestedServicesAdapter extends RecyclerView.Adapter<RequestedServ
 
     @Override
     public int getItemCount() {
-        return requestedServicesList.length;
+        return requestedServicesList.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
