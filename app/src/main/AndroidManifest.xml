@@ -13,28 +13,40 @@
         android:theme="@style/Theme.HotelManagmentSystem"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".pacageViewRoom.ViewRoomMoreInfoForManager"
+            android:name=".packageServiceForManager.EditServiceForManager"
             android:exported="false" />
         <activity
-            android:name=".pacageViewRoom.ViewRoomForManager"
+            android:name=".packageServiceForManager.ViewServiceForManager"
             android:exported="false" />
         <activity
-            android:name=".ViewReception"
+            android:name=".packageServiceForManager.AddServiceForManager"
             android:exported="false" />
         <activity
-            android:name=".AddReception"
+            android:name=".packageRoomForManager.EditRoomForManager"
             android:exported="false" />
         <activity
-            android:name=".AddRoom"
+            android:name=".packageRoomForManager.ViewRoomMoreInfoForManager"
             android:exported="false" />
         <activity
-            android:name=".Manegar"
+            android:name=".packageRoomForManager.ViewRoomForManager"
+            android:exported="false" />
+        <activity
+            android:name=".packageReceptionForManager.ViewReception"
+            android:exported="false" />
+        <activity
+            android:name=".packageReceptionForManager.AddReception"
+            android:exported="false" />
+        <activity
+            android:name=".packageRoomForManager.AddRoom"
+            android:exported="false" />
+        <activity
+            android:name=".AlwanWork.Manegar"
             android:exported="false" />
         <activity
             android:name=".ReserveList"
             android:exported="false" />
         <activity
-            android:name=".Sign_Up"
+            android:name=".AlwanWork.Sign_Up"
             android:exported="false" />
         <activity
             android:name=".ServicesList"

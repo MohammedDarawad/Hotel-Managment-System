@@ -4,17 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gray_background"
-    tools:context=".packageRoomForManager.ViewRoomForManager">
+    tools:context=".packageServiceForManager.ViewServiceForManager">
 
     <androidx.recyclerview.widget.RecyclerView
 
-        android:id="@+id/view_room_recycler"
+        android:id="@+id/service_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="-16dp" />
+        android:background="@drawable/background"
+        android:scrollbars="vertical" />
 
     <Button
         android:layout_width="74dp"
@@ -29,6 +27,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view_room_recycler"
-        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+        app:layout_constraintTop_toTopOf="@+id/service_recycler" />
 </androidx.constraintlayout.widget.ConstraintLayout>

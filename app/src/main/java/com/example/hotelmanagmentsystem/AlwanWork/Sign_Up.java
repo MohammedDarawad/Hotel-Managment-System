@@ -1,4 +1,4 @@
-package com.example.hotelmanagmentsystem;
+package com.example.hotelmanagmentsystem.AlwanWork;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,6 +15,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.hotelmanagmentsystem.HomePage;
+import com.example.hotelmanagmentsystem.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,42 +24,43 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddReception extends AppCompatActivity {
+public class Sign_Up extends AppCompatActivity {
     EditText edtFirstName;
     EditText edtLastName;
     EditText edtEmail;
     EditText edtPhoneNumber;
     EditText edtPassword;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_reception);
+        setContentView(R.layout.activity_sign_up);
         setupViews();
     }
 
     private void setupViews() {
-        edtFirstName = findViewById(R.id.edtTextFirstName);
-        edtLastName = findViewById(R.id.edtTextLastName);
-        edtEmail = findViewById(R.id.edtTextEmail);
-        edtPhoneNumber = findViewById(R.id.edtTextPhoneNumber);
+        edtFirstName = findViewById(R.id.TextServiceName);
+        edtLastName = findViewById(R.id.TextDescription);
+        edtEmail = findViewById(R.id.TextPrice);
+        edtPhoneNumber = findViewById(R.id.TextFreeFor);
         edtPassword = findViewById(R.id.edtTextPassword);
 
     }
-
     String FirstName;
     String LastName;
     String Email;
     String PhoneNumber;
     String Password;
-    public void btnAddReception(View view) {
-        FirstName = edtFirstName.getText().toString();
-        LastName = edtLastName.getText().toString();
-        Email = edtEmail.getText().toString();
-        PhoneNumber = edtPhoneNumber.getText().toString();
-        Password = edtPassword.getText().toString();
+    public void btnSignUp(View view) {
+         FirstName = edtFirstName.getText().toString();
+         LastName = edtLastName.getText().toString();
+         Email = edtEmail.getText().toString();
+         PhoneNumber = edtPhoneNumber.getText().toString();
+         Password = edtPassword.getText().toString();
         if (validateInputs()) {
-            addReception(FirstName, LastName, Email, PhoneNumber, Password);
-
+            addUsers(FirstName, LastName, Email, PhoneNumber, Password);
+            Intent intent = new Intent(Sign_Up.this, HomePage.class);
+            startActivity(intent);
         }
     }
 
@@ -93,9 +96,9 @@ public class AddReception extends AppCompatActivity {
         return true;
     }
 
-    private void addReception(String firstName, String lastName, String email, String phoneNumber, String password) {
-        String url = "http://10.0.2.2:80/add-reception.php";
-        RequestQueue queue = Volley.newRequestQueue(AddReception.this);
+    private void addUsers(String firstName, String lastName, String email, String phoneNumber, String password) {
+        String url = "http://10.0.2.2:80/signup.php";
+        RequestQueue queue = Volley.newRequestQueue(Sign_Up.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -103,7 +106,7 @@ public class AddReception extends AppCompatActivity {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     // on below line we are displaying a success toast message.
-                    Toast.makeText(AddReception.this,
+                    Toast.makeText(Sign_Up.this,
                             jsonObject.getString("message"), Toast.LENGTH_LONG).show();
                 } catch ( JSONException e) {
                     e.printStackTrace();
@@ -113,7 +116,7 @@ public class AddReception extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 // method to handle errors.
-                Toast.makeText(AddReception.this,
+                Toast.makeText(Sign_Up.this,
                         "Fail Sign Up = " + error, Toast.LENGTH_LONG).show();
 
             }
@@ -149,8 +152,5 @@ public class AddReception extends AppCompatActivity {
         queue.add(request);
     }
 
-    public void btnExit(View view) {
-        Intent intent = new Intent(this, Manegar.class);
-        startActivity(intent);
-    }
+
 }

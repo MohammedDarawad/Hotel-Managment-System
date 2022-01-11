@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/addrome_background"
-    tools:context=".pacageViewRoom.ViewRoomMoreInfoForManager">
+    tools:context=".packageRoomForManager.ViewRoomMoreInfoForManager">
 
     <com.smarteist.autoimageslider.SliderView
         android:id="@+id/RSlider"
@@ -27,7 +27,7 @@
         app:sliderIndicatorRadius="2dp"
         app:sliderIndicatorSelectedColor="#5A5A5A"
         app:sliderIndicatorUnselectedColor="#FFF"
-        app:sliderScrollTimeInSec="1" >
+        app:sliderScrollTimeInSec="1">
 
     </com.smarteist.autoimageslider.SliderView>
 
@@ -61,4 +61,19 @@
         app:layout_constraintHorizontal_bias="0.551"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/RSlider" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="152dp"
+        android:backgroundTint="@android:color/darker_gray"
+        android:onClick="btnOnClickBack"
+        android:text="Back"
+        android:textColor="#FD0000"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:cornerRadius="9dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtAllInfo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

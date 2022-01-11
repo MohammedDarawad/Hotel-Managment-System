@@ -5,13 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gray_background"
-    tools:context=".ViewReception">
+    tools:context=".packageReceptionForManager.ViewReception">
 
-    <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.recyclerview.widget.RecyclerView
 
         android:id="@+id/reception_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical" />
+        android:scrollbars="vertical"
+        tools:layout_editor_absoluteX="-98dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <Button
+        android:layout_width="74dp"
+        android:layout_height="39dp"
+        android:background="?attr/homeAsUpIndicator"
+        android:backgroundTint="@color/white"
+        android:onClick="btnOnClickBack"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:cornerRadius="9dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/reception_recycler" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

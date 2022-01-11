@@ -1,4 +1,4 @@
-package com.example.hotelmanagmentsystem.pacageViewRoom;
+package com.example.hotelmanagmentsystem.packageRoomForManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,25 +6,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.StringRequest;
+import com.example.hotelmanagmentsystem.AlwanWork.Manegar;
 import com.example.hotelmanagmentsystem.R;
 import com.example.hotelmanagmentsystem.ReservedRoomMoreInfoAdapter;
 import com.example.hotelmanagmentsystem.model.ImageURLData;
 import com.example.hotelmanagmentsystem.model.RequestQueueSingleton;
-import com.example.hotelmanagmentsystem.model.Room;
 import com.google.gson.Gson;
 import com.smarteist.autoimageslider.SliderView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 public class ViewRoomMoreInfoForManager extends AppCompatActivity {
     private SliderView sliderView;
@@ -47,6 +44,7 @@ public class ViewRoomMoreInfoForManager extends AppCompatActivity {
         sliderView = findViewById(R.id.RSlider);
         txtInfo = findViewById(R.id.txtAllInfo);
         intent = getIntent();
+        gson=new Gson();
         rId =intent.getIntExtra("rId",0);
         floor = intent.getIntExtra("floor",0);
         isReserved = intent.getIntExtra("isReserved",0);
@@ -66,6 +64,7 @@ public class ViewRoomMoreInfoForManager extends AppCompatActivity {
                 null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
+
                 imageURLs = new ImageURLData[response.length()];
                 for (int i = 0; i < response.length(); i++) {
                     try {
@@ -109,4 +108,15 @@ public class ViewRoomMoreInfoForManager extends AppCompatActivity {
                 "Room Type is " + type + "\n" + "Room Capacity: " + capacity+"");
     }
 
+    public void btnOnClickEdit(View view) {
+        Intent intent = new Intent(this, EditRoomForManager.class);
+        intent.putExtra("rId",rId );
+        intent.putExtra("type",type);
+        intent.putExtra("capacity", capacity);
+        startActivity(intent);
+    }
+    public void btnOnClickBack(View view) {
+        Intent intent = new Intent(this, ViewRoomForManager.class);
+        startActivity(intent);
+    }
 }

@@ -6,6 +6,8 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.hotelmanagmentsystem.AlwanWork.Sign_Up;
+
 public class HomePage extends AppCompatActivity {
 
     @Override

@@ -1,4 +1,4 @@
-package com.example.hotelmanagmentsystem.pacageViewRoom;
+package com.example.hotelmanagmentsystem.packageRoomForManager;
 
 public class InitialRoomInfo {
     private int rId;

@@ -1,8 +1,7 @@
-package com.example.hotelmanagmentsystem.pacageViewRoom;
+package com.example.hotelmanagmentsystem.packageRoomForManager;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,36 +9,25 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
 import com.example.hotelmanagmentsystem.R;
-import com.example.hotelmanagmentsystem.ReservedRoomMoreInfo;
-import com.example.hotelmanagmentsystem.ViewReceptionAdapter;
-import com.example.hotelmanagmentsystem.model.CaptionedImagesAdapter;
+import com.example.hotelmanagmentsystem.packageReceptionForManager.ViewReceptionAdapter;
 import com.example.hotelmanagmentsystem.model.ImageURLData;
 import com.example.hotelmanagmentsystem.model.RequestQueueSingleton;
-import com.example.hotelmanagmentsystem.model.ReservedRoom;
-import com.example.hotelmanagmentsystem.model.Room;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 
 public class ViewRoomAdapter extends RecyclerView.Adapter<ViewReceptionAdapter.ViewHolder> {
@@ -72,8 +60,15 @@ public class ViewRoomAdapter extends RecyclerView.Adapter<ViewReceptionAdapter.V
         CardView cardView = holder.cardView;
         ImageView imageView = (ImageView) cardView.findViewById(R.id.firstRomeImage);
         TextView txt = (TextView)cardView.findViewById(R.id.txtFirstRoomInfoo);
-        txt.setText("Room ID: " + RoomsList[position].getrId() + "\n"
-                +"Capacity: " + RoomsList[position].getCapacity());
+        String reserved = "noth";
+        if(RoomsList[position].isReserved()==1){
+            reserved = "its reserved";
+        }
+        else {
+            reserved = "its not reserved";
+        }
+        txt.setText("Room Number " + RoomsList[position].getrId() + "\n"
+                + reserved);
      //   String split[] = captions1.get(position).split("\n");
        // String split2[]= split[0].split(" ");
         //rId = split2[2];
@@ -93,14 +88,6 @@ public class ViewRoomAdapter extends RecyclerView.Adapter<ViewReceptionAdapter.V
 
             }
         });
-      /*  holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), ViewRoomMoreInfoForManager.class);
-                intent.putExtra("rId", rId);
-                v.getContext().startActivity(intent);
-            }
-        });*/
     }
     private void setImage(ImageView imageView){
         String url = "http://10.0.2.2/get-images.php?rId=" + rId + "&getAllImages=0";

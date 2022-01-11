@@ -1,11 +1,10 @@
-package com.example.hotelmanagmentsystem;
+package com.example.hotelmanagmentsystem.packageServiceForManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -15,6 +14,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.hotelmanagmentsystem.R;
+import com.example.hotelmanagmentsystem.packageRoomForManager.EditRoomForManager;
+import com.example.hotelmanagmentsystem.packageRoomForManager.ViewRoomForManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,39 +24,50 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddRoom extends AppCompatActivity {
-EditText edtFloorNumber;
-EditText edtRoomType;
-EditText edtRoomCapacity;
-
+public class EditServiceForManager extends AppCompatActivity {
+private EditText txtName;
+private EditText txtDescription;
+private  EditText txtPrice;
+private EditText txtFreeFor;
+private Intent intent;
+private int sId;
+private String name;
+private String description;
+private int price;
+private String freeFor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_room);
-        setupViews();
+        setContentView(R.layout.activity_edit_service_for_manager);
+        intent = getIntent();
+        sId =intent.getIntExtra("sId",0);
+        name =intent.getStringExtra("name");
+        description =intent.getStringExtra("description");
+        price =intent.getIntExtra("price",0);
+        freeFor =intent.getStringExtra("freeFor");
+        setUpView();
     }
 
-    private void setupViews() {
-        edtFloorNumber=findViewById(R.id.edtFloorNumber);
-        edtRoomType=findViewById(R.id.edtRoomType);
-        edtRoomCapacity=findViewById(R.id.edtRoomCapacity);
-    }
-
-  String FloorNumber;
-  String RoomType;
-  String RoomCapacity;
-    public void btnOnClickAdd(View view) {
-       FloorNumber = edtFloorNumber.getText().toString();
-       RoomType = edtRoomType.getText().toString();
-       RoomCapacity = edtRoomCapacity.getText().toString();
-        if (validateInputs()) {
-            addRoom(FloorNumber, RoomType, RoomCapacity);
+    private void setUpView() {
+        txtName = findViewById(R.id.TextServiceName);
+        txtDescription = findViewById(R.id.TextDescription);
+        txtPrice = findViewById(R.id.TextPrice);
+        txtFreeFor = findViewById(R.id.TextFreeFor);
+        txtName.setHint("Old Name is "+name);
+        txtDescription.setHint("Old Description is " +description);
+        txtPrice.setHint("Old Price is "+price);
+        if(!freeFor.equals("")) {
+            txtFreeFor.setHint("Old Free For " + freeFor + "\n" + "To Clear Free For Data Just Click Space");
         }
-    }
+        else {
+            txtFreeFor.setHint("Old Free For: Not Free For Any Rooms");
+            txtFreeFor.setHeight(100);
+        }
+        }
 
-    private void addRoom(String floorNumber, String roomType, String roomCapacity) {
-        String url = "http://10.0.2.2:80/add_room.php";
-        RequestQueue queue = Volley.newRequestQueue(AddRoom.this);
+    public void btnOnClickEdit(View view) {
+        String url = "http://10.0.2.2:80/update-service-for-manager.php";
+        RequestQueue queue = Volley.newRequestQueue(EditServiceForManager.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -62,7 +75,7 @@ EditText edtRoomCapacity;
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     // on below line we are displaying a success toast message.
-                    Toast.makeText(AddRoom.this,
+                    Toast.makeText(EditServiceForManager.this,
                             jsonObject.getString("message"), Toast.LENGTH_LONG).show();
                 } catch ( JSONException e) {
                     e.printStackTrace();
@@ -72,7 +85,7 @@ EditText edtRoomCapacity;
             @Override
             public void onErrorResponse(VolleyError error) {
                 // method to handle errors.
-                Toast.makeText(AddRoom.this,
+                Toast.makeText(EditServiceForManager.this,
                         "Fail Sign Up = " + error, Toast.LENGTH_LONG).show();
 
             }
@@ -93,9 +106,11 @@ EditText edtRoomCapacity;
 
                 // on below line we are passing our
                 // key and value pair to our parameters.
-                params.put("floor", floorNumber);
-                params.put("type", roomType);
-                params.put("capacity", roomCapacity);
+                params.put("sId",sId+"");
+                params.put("name", txtName.getText().toString());
+                params.put("description", txtDescription.getText().toString());
+                params.put("price", txtPrice.getText().toString());
+                params.put("freeFor", txtFreeFor.getText().toString());
 
                 // at last we are returning our params.
                 return params;
@@ -104,30 +119,7 @@ EditText edtRoomCapacity;
         // below line is to make
         // a json object request.
         queue.add(request);
-    }
-
-    private boolean validateInputs() {
-        if (FloorNumber.isEmpty()) {
-            edtFloorNumber.setError("This field can not be blank");
-            edtFloorNumber.requestFocus();
-            return false;
-        }
-        else if (RoomType.isEmpty()) {
-            edtRoomType.setError("This field can not be blank");
-            edtRoomType.requestFocus();
-            return false;
-        }
-        else if (RoomCapacity.isEmpty()) {
-            edtRoomCapacity.setError("This field can not be blank");
-            edtRoomCapacity.requestFocus();
-            return false;
-        }
-
-        return true;
-    }
-
-    public void btnOnClickExit(View view) {
-        Intent intent = new Intent(this, Manegar.class);
+        Intent intent = new Intent(this, ViewServiceForManager.class);
         startActivity(intent);
     }
 }

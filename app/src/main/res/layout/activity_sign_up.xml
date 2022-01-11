@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".Sign_Up">
+    tools:context=".AlwanWork.Sign_Up">
 
     <EditText
-        android:id="@+id/edtTextPhoneNumber"
+        android:id="@+id/TextFreeFor"
         android:layout_width="200dp"
         android:layout_height="37dp"
         android:layout_marginTop="36dp"
@@ -18,7 +18,7 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/edtTextEmail"
+        app:layout_constraintTop_toBottomOf="@+id/TextPrice"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
     <EditText
@@ -32,7 +32,7 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/edtTextPhoneNumber"
+        app:layout_constraintTop_toBottomOf="@+id/TextFreeFor"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
     <TextView
@@ -111,7 +111,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
-        android:id="@+id/edtTextFirstName"
+        android:id="@+id/TextServiceName"
         style="@style/signUpEdtText"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
@@ -122,7 +122,7 @@
         tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <EditText
-        android:id="@+id/edtTextLastName"
+        android:id="@+id/TextDescription"
         style="@style/signUpEdtText"
         android:layout_width="230dp"
         android:layout_height="35dp"
@@ -134,11 +134,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.117"
         app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/edtTextFirstName"
+        app:layout_constraintTop_toBottomOf="@+id/TextServiceName"
         tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <EditText
-        android:id="@+id/edtTextEmail"
+        android:id="@+id/TextPrice"
         android:layout_width="289dp"
         android:layout_height="41dp"
         android:layout_marginTop="44dp"
@@ -149,7 +149,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.407"
         app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/edtTextLastName"
+        app:layout_constraintTop_toBottomOf="@+id/TextDescription"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <Button

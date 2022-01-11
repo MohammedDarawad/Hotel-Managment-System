@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gray_background"
-    tools:context=".Manegar">
+    tools:context=".AlwanWork.Manegar">
 
     <Button
         android:id="@+id/button5"
@@ -47,7 +47,7 @@
         android:layout_marginTop="12dp"
         android:backgroundTint="#E91E63"
         android:onClick="onClickAddReseption"
-        android:text="Add Reception"
+        android:text="Add Receptione"
         android:textColor="@color/design_default_color_on_secondary"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -83,5 +83,35 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button15"
+        android:layout_width="226dp"
+        android:layout_height="50dp"
+        android:layout_margin="15dp"
+        android:backgroundTint="@color/design_default_color_secondary"
+        android:onClick="btnOnClickAddService"
+        android:text="Add Service"
+        android:textColor="@color/design_default_color_primary"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button11" />
+
+    <Button
+        android:id="@+id/button16"
+        android:layout_width="226dp"
+        android:layout_height="50dp"
+        android:layout_margin="15dp"
+        android:backgroundTint="@color/design_default_color_secondary"
+        android:onClick="btnOnClickViewService"
+        android:text="View Service"
+        android:textColor="@color/design_default_color_primary"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button15" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

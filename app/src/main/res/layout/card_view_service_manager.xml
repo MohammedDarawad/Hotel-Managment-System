@@ -4,23 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_reception"
     android:layout_width="match_parent"
-    android:layout_height="158dp"
+    android:layout_height="300dp"
     android:layout_margin="20dp"
     card_view:cardCornerRadius="4dp"
     card_view:cardElevation="2dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="158dp"
+        android:layout_height="match_parent"
         android:background="@drawable/light_gray_background">
 
         <TextView
             android:id="@+id/txtServiceInfo"
-            android:layout_width="351dp"
-            android:layout_height="101dp"
+            android:layout_width="365dp"
+            android:layout_height="248dp"
             android:layout_margin="2dp"
-            android:layout_marginTop="4dp"
-            android:textSize="20sp"
+            android:textSize="18sp"
+            android:textStyle="bold"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent" />
@@ -29,9 +29,11 @@
             android:id="@+id/btnEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="16dp"
-            android:text="Expulsion"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="?android:attr/colorPressedHighlight"
+            android:text="Edit"
+            android:textSize="20sp"
+            card_view:cornerRadius="15dp"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/txtServiceInfo" />
 
@@ -39,13 +41,27 @@
             android:id="@+id/txtDrop"
             android:layout_width="115dp"
             android:layout_height="29dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:text="Expulsioned"
+            android:layout_marginStart="140dp"
+            android:layout_marginTop="4dp"
+            android:text="Deleted"
             android:textColor="#FF0000"
-            android:textSize="20sp"
+            android:textSize="25sp"
+            android:textStyle="bold"
             android:visibility="gone"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/txtServiceInfo" />
+
+        <Button
+            android:id="@+id/btnDrop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:backgroundTint="@color/design_default_color_error"
+            android:text="Delete"
+            android:textSize="16sp"
+            card_view:cornerRadius="15dp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/txtServiceInfo" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

@@ -1,11 +1,13 @@
-package com.example.hotelmanagmentsystem;
+package com.example.hotelmanagmentsystem.packageReceptionForManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -14,6 +16,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.hotelmanagmentsystem.AlwanWork.Manegar;
+import com.example.hotelmanagmentsystem.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -67,5 +71,10 @@ public class ViewReception extends AppCompatActivity {
         });
 
         queue.add(request);
+    }
+
+    public void btnOnClickBack(View view) {
+        Intent intent = new Intent(this, Manegar.class);
+        startActivity(intent);
     }
 }
