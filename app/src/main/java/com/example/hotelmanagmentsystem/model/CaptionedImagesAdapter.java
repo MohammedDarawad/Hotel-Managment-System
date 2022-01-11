@@ -54,10 +54,10 @@ public class CaptionedImagesAdapter
         CardView cardView = holder.cardView;
         ImageView imageView = cardView.findViewById(R.id.ivRoomImage);
         Glide.with(context).load(servicesList[position].getImageURL()).into(imageView);
-        TextView tvName = cardView.findViewById(R.id.tvName);
+        TextView tvName = cardView.findViewById(R.id.tvSId);
         tvName.setText(servicesList[position].getName());
         tvRequested = cardView.findViewById(R.id.tvRequested);
-        btRequest = cardView.findViewById(R.id.btRequest);
+        btRequest = cardView.findViewById(R.id.btComplete);
         btRequest.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 handleRequest(holder.getAdapterPosition() + 1, 1);

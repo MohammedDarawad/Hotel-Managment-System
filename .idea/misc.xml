@@ -13,7 +13,6 @@
         <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/activity_sign_up.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/activity_view_reception.xml" value="0.23072916666666668" />
         <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/activity_view_room_for_manager.xml" value="0.23854166666666668" />
-        <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/activity_view_room_more_info_for_manager.xml" value="0.2" />
         <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/card_reception.xml" value="0.264" />
         <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/card_reserved_rooms_list.xml" value="0.23854166666666668" />
         <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/card_serviceslist.xml" value="0.23072916666666668" />
@@ -22,9 +21,12 @@
         <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/slider_reservedroommoreinfo.xml" value="0.23854166666666668" />
         <entry key="..\:/Users/moeda/AndroidStudioProjects/HotelManagmentSystem/app/src/main/res/layout/activity_home_page.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/moeda/AndroidStudioProjects/HotelManagmentSystem/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/Users/moeda/AndroidStudioProjects/HotelManagmentSystem/app/src/main/res/layout/activity_receptionest_home_page.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/moeda/AndroidStudioProjects/HotelManagmentSystem/app/src/main/res/layout/activity_receptionist_manage_requests.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/moeda/AndroidStudioProjects/HotelManagmentSystem/app/src/main/res/layout/activity_reserve_list.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/moeda/AndroidStudioProjects/HotelManagmentSystem/app/src/main/res/layout/activity_services_list.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/moeda/AndroidStudioProjects/HotelManagmentSystem/app/src/main/res/layout/activity_sign_up.xml" value="0.152" />
+        <entry key="..\:/Users/moeda/AndroidStudioProjects/HotelManagmentSystem/app/src/main/res/layout/card_receptionestrequestedservices.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/moeda/AndroidStudioProjects/HotelManagmentSystem/app/src/main/res/layout/card_serviceslist.xml" value="0.264" />
       </map>
     </option>

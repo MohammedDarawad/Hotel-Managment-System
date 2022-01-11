@@ -29,6 +29,7 @@ import java.util.Map;
 
 public class Login extends AppCompatActivity {
     private final String apiURL = "http://10.0.2.2/login.php";
+    private final String errorMessage_Login = "No Such User Exists";
     private RequestQueue queue;
     private String emailAddress;
     private String password;
@@ -39,7 +40,7 @@ public class Login extends AppCompatActivity {
     private SharedPreferences.Editor editor;
     private Gson gson;
     private JSONObject responceJsonObject;
-    private String errorMessage_Login = "No Such User Exists";
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,14 +134,13 @@ public class Login extends AppCompatActivity {
             editor.putString("emailAddress", "emailAddress");
             editor.commit();
         }
-        Intent intent = null;
         int userType = responceJsonObject.getJSONObject("user").getInt("userType");
         if (userType == 0) {
-            intent = new Intent(Login.this, Manegar.class);
+            intent = new Intent(this, Manegar.class);
         } else if (userType == 1) {
-            intent = new Intent(Login.this, HomePage.class);
+            intent = new Intent(this, ReceptionistHomePage.class);
         } else if (userType == 2) {
-            intent = new Intent(Login.this, HomePage.class);
+            intent = new Intent(this, HomePage.class);
         }
         intent.putExtra("emailAddress", emailAddress);
         startActivity(intent);
