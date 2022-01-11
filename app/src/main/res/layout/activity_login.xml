@@ -30,11 +30,9 @@
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_margin="20dp"
+        android:ems="20"
         android:hint="Password"
-        android:paddingLeft="15sp"
-        android:textColor="#000000"
-        android:textColorHint="#9C9C9C" />
+        android:inputType="textPassword" />
 
     <CheckBox
         android:id="@+id/cbRememberLogin"
