@@ -32,12 +32,14 @@ public class CaptionedImagesAdapter
     private final String apiURL = "http://10.0.2.2/request-service.php";
     private final Service[] servicesList;
     private final Context context;
+    private final String rId;
     private Button btRequest;
     private TextView tvRequested;
 
-    public CaptionedImagesAdapter(Service[] servicesList, Context context) {
+    public CaptionedImagesAdapter(Service[] servicesList, Context context, String rId) {
         this.servicesList = servicesList;
         this.context = context;
+        this.rId = rId;
     }
 
     @Override
@@ -60,7 +62,7 @@ public class CaptionedImagesAdapter
         btRequest = cardView.findViewById(R.id.btComplete);
         btRequest.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                handleRequest(holder.getAdapterPosition() + 1, 1);
+                handleRequest(holder.getAdapterPosition() + 1, rId);
             }
         });
     }
@@ -70,7 +72,7 @@ public class CaptionedImagesAdapter
         return servicesList.length;
     }
 
-    private void handleRequest(int sId, int rId) {
+    private void handleRequest(int sId, String rId) {
         StringRequest request = new StringRequest(Request.Method.POST, apiURL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -80,8 +82,6 @@ public class CaptionedImagesAdapter
                         System.out.println(responceJsonObject.toString());
                         if (!responceJsonObject.getBoolean("error")) {
                             Toast.makeText(context.getApplicationContext(), responceJsonObject.getString("message"), Toast.LENGTH_SHORT).show();
-                            btRequest.setVisibility(View.GONE);
-                            tvRequested.setVisibility(View.VISIBLE);
                         } else {
                             Toast.makeText(context.getApplicationContext(),
                                     "Some thing wrong happened", Toast.LENGTH_SHORT).show();
@@ -101,7 +101,7 @@ public class CaptionedImagesAdapter
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("sId", sId + "");
-                params.put("rId", rId + "");
+                params.put("rId", rId);
                 return params;
             }
 

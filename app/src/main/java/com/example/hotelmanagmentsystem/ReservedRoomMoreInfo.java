@@ -28,6 +28,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -118,9 +121,13 @@ public class ReservedRoomMoreInfo extends AppCompatActivity {
     }
 
     public void requestServices(View view) {
-        Intent intent = new Intent(this, ServicesList.class);
-        intent.putExtra("rId", rId);
-        startActivity(intent);
+        if (isCheckedIn == 1) {
+            Intent intent = new Intent(this, ServicesList.class);
+            intent.putExtra("rId", rId);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "You must check in first", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void checkInOut(View view) {
@@ -183,47 +190,61 @@ public class ReservedRoomMoreInfo extends AppCompatActivity {
     }
 
     private void handleCheckIn() {
-        StringRequest request = new StringRequest(Request.Method.POST, checkInApiURL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject responceJsonObject = new JSONObject(response);
-                    if (responceJsonObject.has("hasError")) {
-                        if (!responceJsonObject.getBoolean("hasError")) {
-                            btCheckInOut.setText("Check Out");
-                            btCheckInOut.setBackgroundColor(Color.RED);
-                            Toast.makeText(ReservedRoomMoreInfo.this, "Checked In Successfully", Toast.LENGTH_SHORT).show();
-                            isCheckedIn = 1;
-                        } else {
-                            Toast.makeText(ReservedRoomMoreInfo.this,
-                                    responceJsonObject.getString("message"), Toast.LENGTH_LONG).show();
+        Date today = new Date();
+        Date startDate = null;
+        Date endDate = null;
+        try {
+            startDate = new SimpleDateFormat("dd/MM/yyyy").parse(intent.getStringExtra("startDate"));
+            endDate = new SimpleDateFormat("dd/MM/yyyy").parse(intent.getStringExtra("endDate"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        if (today.after(startDate) && today.before(endDate)) {
+            StringRequest request = new StringRequest(Request.Method.POST, checkInApiURL, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        JSONObject responceJsonObject = new JSONObject(response);
+                        if (responceJsonObject.has("hasError")) {
+                            if (!responceJsonObject.getBoolean("hasError")) {
+                                btCheckInOut.setText("Check Out");
+                                btCheckInOut.setBackgroundColor(Color.RED);
+                                Toast.makeText(ReservedRoomMoreInfo.this, "Checked In Successfully", Toast.LENGTH_SHORT).show();
+                                isCheckedIn = 1;
+                            } else {
+                                Toast.makeText(ReservedRoomMoreInfo.this,
+                                        responceJsonObject.getString("message"), Toast.LENGTH_LONG).show();
+                            }
                         }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("Error", error.toString());
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("id", reservationId + "");
-                params.put("val", "1");
-                return params;
-            }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d("Error", error.toString());
+                }
+            }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("id", reservationId + "");
+                    params.put("val", "1");
+                    return params;
+                }
 
-            @Override
-            public String getBodyContentType() {
-                return "application/x-www-form-urlencoded; charset=UTF-8";
-            }
-        };
+                @Override
+                public String getBodyContentType() {
+                    return "application/x-www-form-urlencoded; charset=UTF-8";
+                }
+            };
 
-        RequestQueueSingleton.getInstance(this).addToRequestQueue(request);
+            RequestQueueSingleton.getInstance(this).addToRequestQueue(request);
+        } else {
+            Toast.makeText(this, "Sorry, you can't check in today", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void getReservationInformation() {

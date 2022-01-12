@@ -1,5 +1,6 @@
 package com.example.hotelmanagmentsystem;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -21,6 +22,7 @@ import org.json.JSONException;
 
 public class ServicesList extends AppCompatActivity {
     private final String apiURL = "http://10.0.2.2/get-services.php";
+    private Intent intent;
     private Gson gson;
     private Service[] servicesList;
     private RecyclerView rvServicesList;
@@ -32,6 +34,7 @@ public class ServicesList extends AppCompatActivity {
         rvServicesList = findViewById(R.id.rvRequests);
 
         gson = new Gson();
+        intent = getIntent();
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, apiURL,
                 null, new Response.Listener<JSONArray>() {
@@ -46,7 +49,7 @@ public class ServicesList extends AppCompatActivity {
                     }
                 }
                 rvServicesList.setLayoutManager(new LinearLayoutManager(ServicesList.this));
-                CaptionedImagesAdapter adapter = new CaptionedImagesAdapter(servicesList, getApplicationContext());
+                CaptionedImagesAdapter adapter = new CaptionedImagesAdapter(servicesList, getApplicationContext(), intent.getStringExtra("rId"));
                 rvServicesList.setAdapter(adapter);
             }
         }, new Response.ErrorListener() {
