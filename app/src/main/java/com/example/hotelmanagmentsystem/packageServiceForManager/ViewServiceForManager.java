@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -19,18 +18,10 @@ import com.android.volley.toolbox.Volley;
 import com.example.hotelmanagmentsystem.AlwanWork.Manegar;
 import com.example.hotelmanagmentsystem.R;
 import com.example.hotelmanagmentsystem.model.RequestQueueSingleton;
-import com.example.hotelmanagmentsystem.packageReceptionForManager.ViewReception;
-import com.example.hotelmanagmentsystem.packageReceptionForManager.ViewReceptionAdapter;
-import com.example.hotelmanagmentsystem.packageRoomForManager.InitialRoomInfo;
-import com.example.hotelmanagmentsystem.packageRoomForManager.ViewRoomAdapter;
-import com.example.hotelmanagmentsystem.packageRoomForManager.ViewRoomForManager;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 
 public class ViewServiceForManager extends AppCompatActivity {
     private ServiceManager[] ServiceList;

@@ -2,9 +2,12 @@ package com.example.hotelmanagmentsystem.packageServiceForManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -18,6 +21,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.hotelmanagmentsystem.AlwanWork.Manegar;
 import com.example.hotelmanagmentsystem.R;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,13 +34,34 @@ private EditText txtName;
 private  EditText txtDescription;
 private EditText txtPrice;
 private EditText txtFreeFor;
+    private SharedPreferences prefs;
+    private SharedPreferences.Editor editor;
+    public static final String prefService = "prefService";
+    private String st="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_service_for_manager);
         setupView();
 
+        setupSharedPrefs();
+        getPref();
     }
+
+    private void getPref() {
+        Gson gson = new Gson();
+        String serviceAdd = prefs.getString(prefService,"");
+        String st2 =  gson.fromJson(serviceAdd,String.class);
+        if(!serviceAdd.equals("")){
+            st = st2;
+        }
+    }
+
+    private void setupSharedPrefs() {
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = prefs.edit();
+    }
+
 
     private void setupView() {
         txtName=findViewById(R.id.TextServiceName);
@@ -69,6 +94,7 @@ private EditText txtFreeFor;
         String url = "http://10.0.2.2:80/add-service-for-manager.php";
         RequestQueue queue = Volley.newRequestQueue(AddServiceForManager.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
+            @SuppressLint("NewApi")
             @Override
             public void onResponse(String response) {
                 Log.e("TAG", "RESPONSE IS " + response);
@@ -77,6 +103,20 @@ private EditText txtFreeFor;
                     // on below line we are displaying a success toast message.
                     Toast.makeText(AddServiceForManager.this,
                             jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+                    String s;
+                    if(freeFor.equals("")){
+                        s = " and Its not free for any rooms";
+                    }
+                    else {
+                        s=" and its Free For Rooms Types " + freeFor;
+                    }
+                    st += "\n You Add Service Name: " + name +" ,Description: "+
+                            description + " ,Price: " + price + s +" On  "
+                            + java.time.LocalDate.now()+"\n" ;
+                    Gson gson = new Gson();
+                    String addService = gson.toJson(st);
+                    editor.putString(prefService,addService);
+                    editor.commit();
                 } catch ( JSONException e) {
                     e.printStackTrace();
                 }

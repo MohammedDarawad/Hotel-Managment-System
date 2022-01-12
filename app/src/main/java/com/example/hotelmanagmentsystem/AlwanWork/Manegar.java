@@ -52,4 +52,9 @@ public class Manegar extends AppCompatActivity {
         Intent intent = new Intent(this, ViewServiceForManager.class);
         startActivity(intent);
     }
+
+    public void btnOnClickViewChanged(View view) {
+        Intent intent = new Intent(this, ViewChanged.class);
+        startActivity(intent);
+    }
 }

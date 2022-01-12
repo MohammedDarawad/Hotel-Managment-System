@@ -2,9 +2,12 @@ package com.example.hotelmanagmentsystem.packageRoomForManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -18,6 +21,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.hotelmanagmentsystem.AlwanWork.Manegar;
 import com.example.hotelmanagmentsystem.R;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,12 +33,31 @@ public class AddRoom extends AppCompatActivity {
 EditText edtFloorNumber;
 EditText edtRoomType;
 EditText edtRoomCapacity;
-
+    private SharedPreferences prefs;
+    private SharedPreferences.Editor editor;
+    public static final String prefRoom = "prefRoom";
+    private String st="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_room);
         setupViews();
+        setupSharedPrefs();
+        getPref();
+    }
+
+    private void getPref() {
+        Gson gson = new Gson();
+        String roomAdd = prefs.getString(prefRoom,"");
+        String st2 =  gson.fromJson(roomAdd,String.class);
+        if(!roomAdd.equals("")){
+            st = st2;
+        }
+    }
+
+    private void setupSharedPrefs() {
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = prefs.edit();
     }
 
     private void setupViews() {
@@ -61,6 +84,7 @@ EditText edtRoomCapacity;
         String url = "http://10.0.2.2:80/add_room.php";
         RequestQueue queue = Volley.newRequestQueue(AddRoom.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
+            @SuppressLint("NewApi")
             @Override
             public void onResponse(String response) {
                 Log.e("TAG", "RESPONSE IS " + response);
@@ -69,6 +93,13 @@ EditText edtRoomCapacity;
                     // on below line we are displaying a success toast message.
                     Toast.makeText(AddRoom.this,
                             jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+                    st += "\n You Add Room Floor Number: " + floorNumber +" ,Type: "+
+                            roomType + " ,Capacity: " + roomCapacity +" On" +" "
+                            + java.time.LocalDate.now()+"\n" ;
+                    Gson gson = new Gson();
+                    String addRoom = gson.toJson(st);
+                    editor.putString(prefRoom,addRoom);
+                    editor.commit();
                 } catch ( JSONException e) {
                     e.printStackTrace();
                 }
@@ -101,7 +132,9 @@ EditText edtRoomCapacity;
                 params.put("floor", floorNumber);
                 params.put("type", roomType);
                 params.put("capacity", roomCapacity);
-
+                edtRoomType.setText("");
+                edtRoomCapacity.setText("");
+                edtFloorNumber.setText("");
                 // at last we are returning our params.
                 return params;
             }

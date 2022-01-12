@@ -2,8 +2,11 @@ package com.example.hotelmanagmentsystem.packageRoomForManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -15,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.hotelmanagmentsystem.R;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,6 +34,12 @@ public class EditRoomForManager extends AppCompatActivity {
     private EditText txtEditType;
     private EditText txtEditCapacity;
     private int check;
+    private SharedPreferences prefs;
+    private SharedPreferences.Editor editor;
+    public static final String prefRoomEdit = "prefRoomEdit";
+    public static final String prefRoomDelete = "prefRoomDelete";
+    private String st="";
+    private String st1="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,8 +52,28 @@ public class EditRoomForManager extends AppCompatActivity {
         txtEditType.setHint("Old Type is "+type);
         txtEditCapacity = findViewById(R.id.txtEditCapacity);
         txtEditCapacity.setHint("Old Capacity is "+capacity);
+        setupSharedPrefs();
+        getPref();
     }
 
+    private void getPref() {
+        Gson gson = new Gson();
+        String roomEdit = prefs.getString(prefRoomEdit,"");
+        String st2 =  gson.fromJson(roomEdit,String.class);
+        if(!roomEdit.equals("")){
+            st = st2;
+        }
+        String roomDelete = prefs.getString(prefRoomDelete,"");
+        String st3 =  gson.fromJson(roomDelete,String.class);
+        if(!roomDelete.equals("")){
+            st1 = st3;
+        }
+    }
+
+    private void setupSharedPrefs() {
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = prefs.edit();
+    }
     public void btnOnClickEdit(View view) {
         if (!txtEditType.getText().toString().equals("") && txtEditCapacity.getText().toString().equals("")){
             check = 0;
@@ -62,6 +92,7 @@ public class EditRoomForManager extends AppCompatActivity {
         String url = "http://10.0.2.2:80/update-room.php";
         RequestQueue queue = Volley.newRequestQueue(EditRoomForManager.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
+            @SuppressLint("NewApi")
             @Override
             public void onResponse(String response) {
                 Log.e("TAG", "RESPONSE IS " + response);
@@ -70,6 +101,26 @@ public class EditRoomForManager extends AppCompatActivity {
                     // on below line we are displaying a success toast message.
                     Toast.makeText(EditRoomForManager.this,
                             jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+                    if (check == 0){
+                    st += "\n You Edit Room Number " + rId +" ,Set Type: "+
+                            txtEditType.getText().toString() +" On "
+                            +java.time.LocalDate.now()+"\n" ;
+                    }
+                    else if (check == 1){
+                        st += "\n You Edit Room Number " + rId +" ,Set Capacity: "+
+                                txtEditCapacity.getText().toString() +" On "
+                                +java.time.LocalDate.now()+"\n" ;
+                    }
+                    else {
+                        st += "\n You Edit Room Number " + rId +" ,Set Type: "+
+                                txtEditType.getText().toString() + "and Set Capacity: "+
+                                txtEditCapacity.getText().toString() +" On "
+                                +java.time.LocalDate.now()+"\n" ;
+                    }
+                    Gson gson = new Gson();
+                    String editRoom = gson.toJson(st);
+                    editor.putString(prefRoomEdit,editRoom);
+                    editor.commit();
                 } catch ( JSONException e) {
                     e.printStackTrace();
                 }
@@ -119,6 +170,7 @@ public class EditRoomForManager extends AppCompatActivity {
         String url = "http://10.0.2.2:80/delete-room.php";
         RequestQueue queue = Volley.newRequestQueue(EditRoomForManager.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
+            @SuppressLint("NewApi")
             @Override
             public void onResponse(String response) {
                 Log.e("TAG", "RESPONSE IS " + response);
@@ -127,6 +179,12 @@ public class EditRoomForManager extends AppCompatActivity {
                     // on below line we are displaying a success toast message.
                     Toast.makeText(EditRoomForManager.this,
                             jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+                    st1 += "\n You Deleted Room Number " + rId +" On "
+                            +java.time.LocalDate.now()+"\n" ;
+                Gson gson = new Gson();
+                String deleteRoom = gson.toJson(st1);
+                editor.putString(prefRoomDelete,deleteRoom);
+                editor.commit();
                 } catch ( JSONException e) {
                     e.printStackTrace();
                 }

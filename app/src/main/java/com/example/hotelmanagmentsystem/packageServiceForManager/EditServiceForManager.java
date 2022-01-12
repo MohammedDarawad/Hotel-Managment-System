@@ -2,8 +2,11 @@ package com.example.hotelmanagmentsystem.packageServiceForManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -15,8 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.hotelmanagmentsystem.R;
-import com.example.hotelmanagmentsystem.packageRoomForManager.EditRoomForManager;
-import com.example.hotelmanagmentsystem.packageRoomForManager.ViewRoomForManager;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,6 +37,12 @@ private String name;
 private String description;
 private int price;
 private String freeFor;
+    private SharedPreferences prefs;
+    private SharedPreferences.Editor editor;
+    public static final String prefServiceEdit = "prefServiceEdit";
+
+    private String st="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +54,28 @@ private String freeFor;
         price =intent.getIntExtra("price",0);
         freeFor =intent.getStringExtra("freeFor");
         setUpView();
+        setupSharedPrefs();
+        getPref();
     }
 
+    private void getPref() {
+        Gson gson = new Gson();
+        String serviceEdit = prefs.getString(prefServiceEdit,"");
+        String st2 =  gson.fromJson(serviceEdit,String.class);
+        if(!serviceEdit.equals("")){
+            st = st2;
+        }
+
+    }
+
+    private void setupSharedPrefs() {
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = prefs.edit();
+    }
+    String name1;
+    String description1;
+    String price1;
+    String freeFor1;
     private void setUpView() {
         txtName = findViewById(R.id.TextServiceName);
         txtDescription = findViewById(R.id.TextDescription);
@@ -69,6 +97,7 @@ private String freeFor;
         String url = "http://10.0.2.2:80/update-service-for-manager.php";
         RequestQueue queue = Volley.newRequestQueue(EditServiceForManager.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
+            @SuppressLint("NewApi")
             @Override
             public void onResponse(String response) {
                 Log.e("TAG", "RESPONSE IS " + response);
@@ -77,6 +106,44 @@ private String freeFor;
                     // on below line we are displaying a success toast message.
                     Toast.makeText(EditServiceForManager.this,
                             jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+                    if (txtName.getText().toString().equals("")){
+                        name1 = " Name Not Changed";
+                    }
+                    else {
+                        name1 = " Name: " + txtName.getText().toString();
+                    }
+                    if (txtDescription.getText().toString().equals("")){
+                        description1 = " ,Description Not Changed";
+                    }
+                    else {
+                        description1 = ",Description: " + txtDescription.getText().toString();
+                    }
+                    if (txtPrice.getText().equals("")){
+                        price1 = " ,Price Not Changed";
+                    }
+                    else{
+                        price1 = " ,Price: " + txtPrice.getText().toString();
+                    }
+                    if (txtFreeFor.getText().equals(""))
+                    {
+                        freeFor1 = " and Free For Rooms Type Not Changed";
+                    }
+                    else{
+                        if (txtFreeFor.getText().equals(" ")){
+                            freeFor1 =" and Its not free for any rooms";
+                        }
+                        else {
+                         freeFor1 = "and its Free For Rooms Types " + txtFreeFor.getText().toString();
+                        }
+                    }
+
+                    st += "\n You Edit Service: " + name1+description1+
+                            price1 +freeFor1 +" On  "
+                            + java.time.LocalDate.now()+"\n" ;
+                    Gson gson = new Gson();
+                    String editService = gson.toJson(st);
+                    editor.putString(prefServiceEdit,editService);
+                    editor.commit();
                 } catch ( JSONException e) {
                     e.printStackTrace();
                 }

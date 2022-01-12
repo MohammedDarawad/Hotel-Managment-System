@@ -22,6 +22,9 @@
             android:name=".packageRoomForManager.ViewRoomMoreInfoForManager"
             android:exported="false" />
         <activity
+            android:name=".packageRoomForManager.EditRoomForManager"
+            android:exported="false" />
+        <activity
             android:name=".packageRoomForManager.ViewRoomForManager"
             android:exported="false" />
         <activity
@@ -35,6 +38,18 @@
             android:exported="false" />
         <activity
             android:name=".AlwanWork.Manegar"
+            android:exported="false" />
+        <activity
+            android:name=".packageServiceForManager.AddServiceForManager"
+            android:exported="false" />
+        <activity
+            android:name=".packageServiceForManager.EditServiceForManager"
+            android:exported="false" />
+        <activity
+            android:name=".packageServiceForManager.ViewServiceForManager"
+            android:exported="false" />
+        <activity
+            android:name=".AlwanWork.ViewChanged"
             android:exported="false" />
         <activity
             android:name=".ReserveList"

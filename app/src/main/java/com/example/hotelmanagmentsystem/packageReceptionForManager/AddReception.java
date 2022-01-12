@@ -1,10 +1,14 @@
 package com.example.hotelmanagmentsystem.packageReceptionForManager;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
@@ -19,10 +23,13 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.hotelmanagmentsystem.AlwanWork.Manegar;
 import com.example.hotelmanagmentsystem.R;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,11 +39,32 @@ public class AddReception extends AppCompatActivity {
     EditText edtEmail;
     EditText edtPhoneNumber;
     EditText edtPassword;
+    private String st="";
+    private SharedPreferences prefs;
+    private SharedPreferences.Editor editor;
+    public static final String prefReception = "prefReception";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_reception);
         setupViews();
+        setupSharedPrefs();
+        getPref();
+    }
+
+    private void getPref() {
+        Gson gson = new Gson();
+        String receptionAdd = prefs.getString(prefReception,"");
+       // String st2 = gson.fromJson(receptionAdd,String.class);
+         String st2 =  gson.fromJson(receptionAdd,String.class);
+        if(!receptionAdd.equals("")){
+            st = st2;
+        }
+    }
+
+    private void setupSharedPrefs() {
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+         editor = prefs.edit();
     }
 
     private void setupViews() {
@@ -103,6 +131,7 @@ public class AddReception extends AppCompatActivity {
         String url = "http://10.0.2.2:80/add-reception.php";
         RequestQueue queue = Volley.newRequestQueue(AddReception.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onResponse(String response) {
                 Log.e("TAG", "RESPONSE IS " + response);
@@ -111,6 +140,13 @@ public class AddReception extends AppCompatActivity {
                     // on below line we are displaying a success toast message.
                     Toast.makeText(AddReception.this,
                             jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+                    st += "\n You Add Receptionist his Name: " + FirstName + " " +LastName +" ,With Email Address: "+
+                    email + " ,Phone Number: " + phoneNumber + " and Password: " + password + " On "
+                            +java.time.LocalDate.now()+"\n" ;
+                    Gson gson = new Gson();
+                    String addReception = gson.toJson(st);
+                    editor.putString(prefReception,addReception);
+                    editor.commit();
                 } catch ( JSONException e) {
                     e.printStackTrace();
                 }
@@ -145,7 +181,11 @@ public class AddReception extends AppCompatActivity {
                 params.put("emailAddress", email);
                 params.put("phoneNumber", phoneNumber);
                 params.put("password", password);
-
+                edtFirstName.setText("");
+                edtLastName.setText("");
+                edtEmail.setText("");
+                edtPassword.setText("");
+                edtPhoneNumber.setText("");
                 // at last we are returning our params.
                 return params;
             }

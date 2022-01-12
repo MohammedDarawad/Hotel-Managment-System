@@ -1,7 +1,10 @@
 package com.example.hotelmanagmentsystem.packageServiceForManager;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,8 +23,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.hotelmanagmentsystem.R;
 import com.example.hotelmanagmentsystem.model.RequestQueueSingleton;
 import com.example.hotelmanagmentsystem.packageReceptionForManager.ViewReceptionAdapter;
-import com.example.hotelmanagmentsystem.packageRoomForManager.InitialRoomInfo;
-import com.example.hotelmanagmentsystem.packageRoomForManager.ViewRoomMoreInfoForManager;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,11 +37,27 @@ public class ViewServiceAdapter extends RecyclerView.Adapter<ViewReceptionAdapte
     private final Context context;
     TextView txtDeleted ;
     private final ServiceManager[] ServiceList;
+    private SharedPreferences prefs;
+    private SharedPreferences.Editor editor;
+    public static final String prefServiceDelete = "prefServiceDelete";
+    private String st="";
     public ViewServiceAdapter(ServiceManager[] ServiceList, Context context) {
         this.ServiceList=ServiceList;
         this.context=context;
     }
+    private void setupSharedPrefs() {
+        prefs = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
+        editor = prefs.edit();
+    }
+    private void getPref() {
+        Gson gson = new Gson();
+        String serviceDelete = prefs.getString(prefServiceDelete,"");
+        String st3 =  gson.fromJson(serviceDelete,String.class);
+        if(!serviceDelete.equals("")){
+            st = st3;
+        }
 
+    }
     @Override
     public ViewReceptionAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         CardView v = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_service_manager,
@@ -98,6 +116,7 @@ public class ViewServiceAdapter extends RecyclerView.Adapter<ViewReceptionAdapte
     private void deleteService(int id){
         String url = "http://10.0.2.2:80/delete-service.php";
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @SuppressLint("NewApi")
             @Override
             public void onResponse(String response) {
                 try {
@@ -109,6 +128,14 @@ public class ViewServiceAdapter extends RecyclerView.Adapter<ViewReceptionAdapte
                             btnDelete.setVisibility(View.GONE);
                             btnEdit.setVisibility(View.GONE);
                             txtDeleted.setVisibility(View.VISIBLE);
+                            setupSharedPrefs();
+                            getPref();
+                            st += "\n You Delete Service ID: " +id+" On "
+                                    +java.time.LocalDate.now()+"\n" ;
+                            Gson gson = new Gson();
+                            String deleteService = gson.toJson(st);
+                            editor.putString(prefServiceDelete,deleteService);
+                            editor.commit();
                         } else {
                             Toast.makeText(context.getApplicationContext(),
                                     "Some thing wrong happened", Toast.LENGTH_SHORT).show();

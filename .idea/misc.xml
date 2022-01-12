@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/activity_add_reception.xml" value="0.23854166666666668" />
         <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/activity_add_room.xml" value="0.17135416666666667" />
+        <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/activity_edit_room_for_manager.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/activity_home_page.xml" value="0.17135416666666667" />
         <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/activity_login.xml" value="0.23854166666666668" />
         <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/activity_manegar.xml" value="0.23854166666666668" />
@@ -11,6 +13,7 @@
         <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/activity_reserved_room_more_info.xml" value="0.23854166666666668" />
         <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/activity_services_list.xml" value="0.23072916666666668" />
         <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/activity_sign_up.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/activity_view_changed.xml" value="0.21927083333333333" />
         <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/activity_view_reception.xml" value="0.23072916666666668" />
         <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/activity_view_room_for_manager.xml" value="0.23854166666666668" />
         <entry key="..\:/Users/PC/Documents/Hotel-Managment-System/app/src/main/res/layout/activity_view_room_more_info_for_manager.xml" value="0.2" />
