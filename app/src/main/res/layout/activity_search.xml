@@ -4,6 +4,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".Search">
+
+    <CalendarView
+        android:id="@+id/calendarView2"
+        android:layout_width="197dp"
+        android:layout_height="255dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="177dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <CalendarView
+        android:id="@+id/calendarView3"
+        android:layout_width="197dp"
+        android:layout_height="255dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="177dp"
+        tools:layout_editor_absoluteY="311dp" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="106dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="36dp"
+        android:text="From : "
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="153dp" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="106dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="40dp"
+        android:text="To : "
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="416dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="152dp"
+        android:layout_height="48dp"
+        android:background="@color/purple_500"
+        android:backgroundTint="#E40B0B"
+        android:onClick="btnSerach"
+        android:shadowColor="@color/white"
+        android:shadowRadius="8"
+        android:text="Serach"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints,OnClick,TextContrastCheck,TextContrastCheck"
+        tools:layout_editor_absoluteY="623dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
