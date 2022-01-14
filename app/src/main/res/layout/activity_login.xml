@@ -1,36 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#FAFAFA"
+    android:background="@drawable/login_background"
     android:gravity="center"
->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="28sp"
-        android:gravity="center"
+    android:orientation="vertical">
 
-        android:textColor="#F9AC36"
-        android:text="Login" />
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="164dp"
+        app:srcCompat="@mipmap/login_logo_foreground" />
 
     <EditText
         android:id="@+id/etEmail"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_margin="20dp"
-        android:hint="Email Address"
-        android:paddingLeft="15sp"
-        android:textColor="#000000"
-        android:textColorHint="#9C9C9C" />
+        style="@style/login_formField"
+        android:hint="Email Address" />
 
     <EditText
         android:id="@+id/etPassword"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:ems="20"
+        style="@style/login_formField"
         android:hint="Password"
         android:inputType="textPassword" />
 
@@ -38,36 +29,51 @@
         android:id="@+id/cbRememberLogin"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_margin="20dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="5dp"
+        android:buttonTint="@color/white"
         android:paddingLeft="15dp"
-        android:text="Remember Login"
-        android:textColor="#000000" />
+        android:text="@string/login_rememberLoginText"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="@color/white"
+        android:textColorHint="#5E5E5E"
+        android:textColorLink="#FFFFFF"
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/angry_btn"
         android:layout_width="match_parent"
-        android:layout_margin="20dp"
-        android:text="Submit"
-        android:textColor="#FFFFFF"
-        android:textSize="25sp"
-        android:layout_height="60dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="5dp"
+        android:onClick="login"
+        android:paddingLeft="15sp"
         android:shadowColor="#FAFAFA"
         android:shadowDx="0"
         android:shadowDy="0"
         android:shadowRadius="14"
-        android:onClick="login"/>
+        android:text="@string/login_text"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#5E5E5E"
+        android:textSize="25sp"
+        app:cornerRadius="50sp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="20dp"
         android:gravity="center"
         android:minHeight="48dp"
         android:onClick="signup"
-        android:text="Sign Up"
-        android:textColor="#F9AC36"
-        android:textSize="16sp"
+        android:text="@string/login_signupText"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
 </LinearLayout>
