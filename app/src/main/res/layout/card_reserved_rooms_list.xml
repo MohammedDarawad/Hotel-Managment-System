@@ -2,8 +2,11 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="250dp"
-    android:layout_margin="20dp">
+    android:layout_height="260dp"
+    android:layout_margin="20dp"
+    android:background="#958D8D"
+    android:backgroundTint="#F0F3FA"
+    app:cardCornerRadius="30dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,49 +16,54 @@
         <ImageView
             android:id="@+id/ivRoomImage"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_weight="1"
+            android:layout_height="180dp"
+            android:scaleType="fitXY"
             app:srcCompat="@android:drawable/alert_dark_frame" />
 
         <TextView
             android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/reservedList_card_topTextView"
             android:layout_below="@+id/ivRoomImage"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="13dp"
-            android:text="Room Number:" />
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/reservedList_card_roomNumberText"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textView8"
-            android:layout_width="wrap_content"
+            style="@style/reservedList_card_topTextView"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ivRoomImage"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="29dp"
-            android:text="Reserved Until:" />
+            android:layout_marginEnd="30dp"
+            android:text="@string/reservedList_card_statusText"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvRoomNumber"
-            android:layout_width="wrap_content"
+            style="@style/reservedList_card_topTextView"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView7"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="29dp"
-            android:layout_marginTop="14dp"
-            android:text="TextView" />
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:text="@string/reservedList_card_roomNumberValueText" />
 
         <TextView
-            android:id="@+id/tvReservedUntil"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvStatus"
+            style="@style/reservedList_card_topTextView"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView8"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="51dp"
-            android:text="TextView" />
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            android:text="@string/reservedList_card_statusValueText" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

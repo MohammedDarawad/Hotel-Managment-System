@@ -2,6 +2,7 @@ package com.example.hotelmanagmentsystem;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +35,7 @@ public class reservedRoomsAdapter
     private final ReservedRoom[] reservedRoomsList;
     private final Context context;
     private final Gson gson = new Gson();
+    private final SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
     private String imageApiURL = "";
 
     public reservedRoomsAdapter(ReservedRoom[] reservedRoomsList, Context context) {
@@ -79,10 +81,17 @@ public class reservedRoomsAdapter
 
         TextView tvRoomNumber = cardView.findViewById(R.id.tvRoomNumber);
         tvRoomNumber.setText(rId);
-        TextView tvReservedUntil = cardView.findViewById(R.id.tvReservedUntil);
-        SimpleDateFormat formatter = new SimpleDateFormat(
-                "dd/MM/yyyy");
-        tvReservedUntil.setText(formatter.format(reservedRoomsList[position].getendDate()));
+        TextView tvStatus = cardView.findViewById(R.id.tvStatus);
+
+        String statusText = "";
+        if (reservedRoomsList[position].isCheckedIn() == 1) {
+            statusText = "Checked In";
+            tvStatus.setTextColor(Color.GREEN);
+        } else {
+            statusText = "Not Checked In";
+            tvStatus.setTextColor(Color.RED);
+        }
+        tvStatus.setText(statusText);
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -74,7 +74,7 @@ public class ReserveList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reserve_list);
 
-        rvReservedRoomsList = findViewById(R.id.rvReservdRoomsList);
+        rvReservedRoomsList = findViewById(R.id.rvReservedRoomsList);
         tvError = findViewById(R.id.tvError);
 
         intent = getIntent();
