@@ -2,7 +2,6 @@ package com.example.hotelmanagmentsystem;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,6 +29,7 @@ import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -193,12 +193,18 @@ public class ReservedRoomMoreInfo extends AppCompatActivity {
         Date today = new Date();
         Date startDate = null;
         Date endDate = null;
+
         try {
             startDate = new SimpleDateFormat("dd/MM/yyyy").parse(intent.getStringExtra("startDate"));
             endDate = new SimpleDateFormat("dd/MM/yyyy").parse(intent.getStringExtra("endDate"));
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(endDate);
+        cal.add(Calendar.DATE, 1);
+        endDate = cal.getTime();
 
         if (today.after(startDate) && today.before(endDate)) {
             StringRequest request = new StringRequest(Request.Method.POST, checkInApiURL, new Response.Listener<String>() {
@@ -209,7 +215,6 @@ public class ReservedRoomMoreInfo extends AppCompatActivity {
                         if (responceJsonObject.has("hasError")) {
                             if (!responceJsonObject.getBoolean("hasError")) {
                                 btCheckInOut.setText("Check Out");
-                                btCheckInOut.setBackgroundColor(Color.RED);
                                 Toast.makeText(ReservedRoomMoreInfo.this, "Checked In Successfully", Toast.LENGTH_SHORT).show();
                                 isCheckedIn = 1;
                             } else {
@@ -251,7 +256,6 @@ public class ReservedRoomMoreInfo extends AppCompatActivity {
         isCheckedIn = intent.getIntExtra("isCheckedIn", 0);
         if (isCheckedIn == 1) {
             btCheckInOut.setText("Check Out");
-            btCheckInOut.setBackgroundColor(Color.RED);
         }
         reservationId = intent.getIntExtra("id", 0);
         uId = intent.getIntExtra("uId", 0);

@@ -9,4 +9,6 @@
     <string name="reservedList_card_statusText">Status</string>
     <string name="reservedList_card_roomNumberValueText">value</string>
     <string name="reservedList_card_statusValueText">value</string>
+    <string name="reservedRoomInfo_CheckInValueText" >Check In</string>
+    <string name="reservedRoomInfo_RequestServiceText">Request Service</string>
 </resources>

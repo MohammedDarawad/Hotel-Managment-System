@@ -50,6 +50,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="5dp"
+        android:backgroundTint="@color/white"
         android:onClick="login"
         android:paddingLeft="15sp"
         android:shadowColor="#FAFAFA"
@@ -57,7 +58,7 @@
         android:shadowDy="0"
         android:shadowRadius="14"
         android:text="@string/login_text"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/color_buttonBlue"
         android:textColorHint="#5E5E5E"
         android:textSize="25sp"
         app:cornerRadius="50sp" />

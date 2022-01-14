@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/login_background"
     tools:context=".ReservedRoomMoreInfo">
 
     <com.smarteist.autoimageslider.SliderView
@@ -25,29 +26,32 @@
 
     <Button
         android:id="@+id/button8"
-        android:layout_width="134dp"
-        android:layout_height="98dp"
-        android:layout_below="@+id/slSlider"
+        style="@style/reservedRoomInfo_button"
+        android:layout_below="@+id/tlTable"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="226dp"
-        android:layout_marginEnd="31dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="20dp"
         android:onClick="requestServices"
-        android:text="Request Service" />
+        android:text="@string/reservedRoomInfo_RequestServiceText" />
 
     <Button
         android:id="@+id/btCheckInOut"
-        android:layout_width="128dp"
-        android:layout_height="100dp"
-        android:layout_below="@+id/slSlider"
+        style="@style/reservedRoomInfo_button"
+        android:layout_below="@+id/tlTable"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="229dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="20dp"
         android:onClick="checkInOut"
-        android:text="Check In" />
+        android:text="@string/reservedRoomInfo_CheckInValueText" />
 
     <TableLayout
+        android:id="@+id/tlTable"
         android:layout_width="match_parent"
-        android:layout_height="170dp"
+        android:layout_height="140dp"
         android:layout_below="@+id/slSlider"
         android:layout_marginTop="20dp"
         android:padding="20dp"
@@ -55,80 +59,75 @@
         android:paddingRight="10dp">
 
         <TableRow
-            android:layout_marginBottom="20dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
             android:gravity="center">
 
             <TextView
                 android:id="@+id/textView13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/reservedRoomInfo_TextView"
+                android:layout_width="110dp"
                 android:text="Room Number:" />
 
             <TextView
                 android:id="@+id/tvRoomNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/reservedRoomInfo_TextView"
+                android:layout_marginRight="20dp"
+                android:gravity="center_horizontal"
                 android:text="TextView" />
 
             <TextView
-                android:id="@+id/textView15"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:visibility="invisible" />
-
-            <TextView
                 android:id="@+id/textView16"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/reservedRoomInfo_TextView"
                 android:text="Floor:" />
 
             <TextView
                 android:id="@+id/tvRoomFloor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/reservedRoomInfo_TextView"
+                android:gravity="center_horizontal"
                 android:text="TextView" />
         </TableRow>
 
-        <TableRow style="@style/TableRowStyle"
+        <TableRow
+            style="@style/TableRowStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/textView18"
+                style="@style/reservedRoomInfo_TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Type:" />
 
             <TextView
                 android:id="@+id/tvRoomType"
+                style="@style/reservedRoomInfo_TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:gravity="center_horizontal"
                 android:text="TextView" />
 
             <TextView
-                android:id="@+id/textView20"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:visibility="invisible" />
-
-            <TextView
                 android:id="@+id/textView21"
+                style="@style/reservedRoomInfo_TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Capacity:" />
 
             <TextView
                 android:id="@+id/tvRoomCapacity"
+                style="@style/reservedRoomInfo_TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:text="TextView" />
         </TableRow>
 
-        <TableRow style="@style/TableRowStyle"
+        <TableRow
+            style="@style/TableRowStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="invisible">
@@ -146,12 +145,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
-                android:visibility="invisible" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="EndDate:" />
 
             <TextView
@@ -160,141 +153,41 @@
                 android:text="TextView" />
         </TableRow>
 
-        <TableRow style="@style/TableRowStyle"
+        <TableRow
+            style="@style/TableRowStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/tvRoomCapacity3"
+                style="@style/reservedRoomInfo_TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="StartDate:" />
 
             <TextView
                 android:id="@+id/tvStartDate"
+                style="@style/reservedRoomInfo_TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:gravity="center_horizontal"
                 android:text="Type:" />
 
             <TextView
-                android:id="@+id/textView26"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:visibility="invisible" />
-
-            <TextView
                 android:id="@+id/tvRoomType3"
+                style="@style/reservedRoomInfo_TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="EndDate:" />
 
             <TextView
                 android:id="@+id/tvEndDate"
+                style="@style/reservedRoomInfo_TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:text="TextView" />
         </TableRow>
     </TableLayout>
-
-
-    <!--    <androidx.gridlayout.widget.GridLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="150dp"-->
-<!--        android:layout_below="@+id/slSlider"-->
-<!--        android:layout_marginTop="-1dp"-->
-<!--        android:padding="20dp">-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/textView16"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Room Number:"-->
-<!--            app:layout_column="0"-->
-<!--            app:layout_row="0" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/tvRid"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="TextView"-->
-<!--            app:layout_column="1"-->
-<!--            app:layout_row="0" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/textView18"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="TextView"-->
-<!--            android:visibility="invisible"-->
-<!--            app:layout_column="2"-->
-<!--            app:layout_row="0" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/textView19"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="TextView"-->
-<!--            android:visibility="invisible"-->
-<!--            app:layout_column="3"-->
-<!--            app:layout_row="0" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/textView20"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Floor:"-->
-<!--            app:layout_column="3"-->
-<!--            app:layout_row="0" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/tvFloor"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="TextView"-->
-<!--            app:layout_column="4"-->
-<!--            app:layout_row="0" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/textView22"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Room Type"-->
-<!--            app:layout_column="0"-->
-<!--            app:layout_row="1" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/tvRoomType"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="TextView"-->
-<!--            app:layout_column="1"-->
-<!--            app:layout_row="1" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/textView24"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Capacity"-->
-<!--            app:layout_column="3"-->
-<!--            app:layout_row="1" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/tvCapacity"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="TextView"-->
-<!--            app:layout_column="4"-->
-<!--            app:layout_row="1" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/textView9"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="TextView"-->
-<!--            app:layout_column="0"-->
-<!--            app:layout_row="2" />-->
-<!--    </androidx.gridlayout.widget.GridLayout>-->
-
-
 </RelativeLayout>
