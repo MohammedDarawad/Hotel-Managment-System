@@ -124,6 +124,7 @@ public class ReservedRoomMoreInfo extends AppCompatActivity {
         if (isCheckedIn == 1) {
             Intent intent = new Intent(this, ServicesList.class);
             intent.putExtra("rId", rId);
+            intent.putExtra("type", tvRoomType.getText().toString());
             startActivity(intent);
         } else {
             Toast.makeText(this, "You must check in first", Toast.LENGTH_SHORT).show();

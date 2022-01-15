@@ -21,7 +21,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 public class ServicesList extends AppCompatActivity {
-    private final String apiURL = "http://10.0.2.2/get-services.php";
+    private String apiURL = "http://10.0.2.2/get-services.php?type=";
     private Intent intent;
     private Gson gson;
     private Service[] servicesList;
@@ -36,6 +36,8 @@ public class ServicesList extends AppCompatActivity {
         gson = new Gson();
         intent = getIntent();
 
+        apiURL += intent.getStringExtra("type");
+
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, apiURL,
                 null, new Response.Listener<JSONArray>() {
             @Override
@@ -49,7 +51,7 @@ public class ServicesList extends AppCompatActivity {
                     }
                 }
                 rvServicesList.setLayoutManager(new LinearLayoutManager(ServicesList.this));
-                CaptionedImagesAdapter adapter = new CaptionedImagesAdapter(servicesList, getApplicationContext(), intent.getStringExtra("rId"));
+                CaptionedImagesAdapter adapter = new CaptionedImagesAdapter(servicesList, ServicesList.this, intent.getStringExtra("rId"));
                 rvServicesList.setAdapter(adapter);
             }
         }, new Response.ErrorListener() {

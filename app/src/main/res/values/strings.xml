@@ -11,4 +11,7 @@
     <string name="reservedList_card_statusValueText">value</string>
     <string name="reservedRoomInfo_CheckInValueText" >Check In</string>
     <string name="reservedRoomInfo_RequestServiceText">Request Service</string>
+    <string name="servicesList_NameValueText">value</string>
+    <string name="servicesList_priceValueText">value</string>
+    <string name="servicesList_requestButtonText">Request</string>
 </resources>

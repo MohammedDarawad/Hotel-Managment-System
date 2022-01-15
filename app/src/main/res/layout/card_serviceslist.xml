@@ -2,43 +2,75 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
-    android:layout_margin="20dp"
+    android:layout_height="190dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginRight="20dp"
     app:cardCornerRadius="10dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:gravity="center">
 
         <ImageView
             android:id="@+id/ivRoomImage"
-            android:layout_width="97dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_width="201dp"
+            android:layout_height="78dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="85dp"
+            android:layout_marginEnd="85dp"
             app:srcCompat="@android:drawable/alert_dark_frame" />
 
         <TextView
             android:id="@+id/tvSId"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="TextView" />
+            android:layout_below="@+id/ivRoomImage"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="0dp"
+            android:gravity="center_horizontal"
+            android:text="@string/servicesList_NameValueText"
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/btComplete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Request" />
+            android:layout_width="115dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/tvSId"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="55dp"
+            android:layout_toStartOf="@+id/btInfo"
+            android:layout_toEndOf="@+id/tvPrice"
+            android:text="@string/servicesList_requestButtonText"
+            app:cornerRadius="10dp" />
+
+        <Button
+            android:id="@+id/btInfo"
+            android:layout_width="36dp"
+            android:layout_height="33dp"
+            android:layout_below="@+id/tvSId"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="25dp"
+            android:background="@android:drawable/ic_dialog_info"
+            android:text="Button" />
 
         <TextView
-            android:id="@+id/tvRequested"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Requested"
-            android:textColor="#219F4A"
-            android:visibility="gone" />
-    </LinearLayout>
+            android:id="@+id/tvPrice"
+            android:layout_width="65dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/tvSId"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="12dp"
+            android:gravity="center|center_horizontal"
+            android:text="@string/servicesList_priceValueText" />
+
+    </RelativeLayout>
 </androidx.cardview.widget.CardView>

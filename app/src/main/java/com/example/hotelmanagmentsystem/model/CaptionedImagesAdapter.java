@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,8 +34,6 @@ public class CaptionedImagesAdapter
     private final Service[] servicesList;
     private final Context context;
     private final String rId;
-    private Button btRequest;
-    private TextView tvRequested;
 
     public CaptionedImagesAdapter(Service[] servicesList, Context context, String rId) {
         this.servicesList = servicesList;
@@ -58,11 +57,27 @@ public class CaptionedImagesAdapter
         Glide.with(context).load(servicesList[position].getImageURL()).into(imageView);
         TextView tvName = cardView.findViewById(R.id.tvSId);
         tvName.setText(servicesList[position].getName());
-        tvRequested = cardView.findViewById(R.id.tvRequested);
-        btRequest = cardView.findViewById(R.id.btComplete);
+        TextView tvPrice = cardView.findViewById(R.id.tvPrice);
+        if (servicesList[position].getPrice() == 0) {
+            tvPrice.setText("Free");
+        } else {
+            tvPrice.setText(servicesList[position].getPrice() + "$");
+        }
+        Button btRequest = cardView.findViewById(R.id.btComplete);
         btRequest.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                handleRequest(holder.getAdapterPosition() + 1, rId);
+                handleRequest(servicesList[holder.getAdapterPosition()].getsId(), rId);
+            }
+        });
+
+        Button btInfo = cardView.findViewById(R.id.btInfo);
+        btInfo.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                new AlertDialog.Builder(context)
+                        .setTitle("Description")
+                        .setMessage(servicesList[holder.getAdapterPosition()].getDescription())
+                        .setPositiveButton("Dismiss", null)
+                        .show();
             }
         });
     }
