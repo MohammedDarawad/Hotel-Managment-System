@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.hotelmanagmentsystem.HomePage;
 import com.example.hotelmanagmentsystem.R;
 import com.example.hotelmanagmentsystem.packageReceptionForManager.AddReception;
 import com.example.hotelmanagmentsystem.packageReceptionForManager.ViewReception;
@@ -55,6 +56,11 @@ public class Manegar extends AppCompatActivity {
 
     public void btnOnClickViewChanged(View view) {
         Intent intent = new Intent(this, ViewChanged.class);
+        startActivity(intent);
+    }
+
+    public void btnOnClickBack(View view) {
+        Intent intent = new Intent(this, HomePage.class);
         startActivity(intent);
     }
 }

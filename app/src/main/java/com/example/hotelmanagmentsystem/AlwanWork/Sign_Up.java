@@ -153,4 +153,8 @@ public class Sign_Up extends AppCompatActivity {
     }
 
 
+    public void btnOnClickBack(View view) {
+        Intent intent = new Intent(Sign_Up.this, HomePage.class);
+        startActivity(intent);
+    }
 }

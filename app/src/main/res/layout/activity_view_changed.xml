@@ -23,7 +23,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
+            <Button
+                android:layout_width="74dp"
+                android:layout_height="39dp"
+                android:layout_marginTop="8dp"
+                android:background="?attr/homeAsUpIndicator"
+                android:backgroundTint="@color/white"
+                android:onClick="btnOnClickBack"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                app:cornerRadius="9dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.029"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
             <TextView
                 android:id="@+id/txtChanged"
                 android:layout_width="match_parent"

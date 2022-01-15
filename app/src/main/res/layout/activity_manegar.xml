@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gray_background"
+    android:background="@drawable/manag_back"
     tools:context=".AlwanWork.Manegar">
 
     <Button
@@ -12,8 +12,7 @@
         android:layout_width="226dp"
         android:layout_height="49dp"
         android:layout_margin="15dp"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/design_default_color_primary"
+        android:backgroundTint="?android:attr/textColorHighlight"
         android:onClick="onClickAddRoom"
         android:text="Add Room"
         android:textColor="@color/cardview_light_background"
@@ -21,21 +20,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <Button
         android:id="@+id/button6"
         android:layout_width="226dp"
         android:layout_height="49dp"
         android:layout_margin="15dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/purple_500"
+        android:layout_marginTop="92dp"
+        android:backgroundTint="?android:attr/colorPressedHighlight"
         android:onClick="onClickViewRooms"
         android:text="View Rooms"
         android:textColor="@color/cardview_light_background"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button5" />
 
@@ -45,13 +44,13 @@
         android:layout_height="50dp"
         android:layout_margin="15dp"
         android:layout_marginTop="12dp"
-        android:backgroundTint="#E91E63"
+        android:backgroundTint="?android:attr/textColorHighlight"
         android:onClick="onClickAddReseption"
         android:text="Add Receptione"
         android:textColor="@color/design_default_color_on_secondary"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button6" />
 
@@ -60,7 +59,7 @@
         android:layout_width="226dp"
         android:layout_height="50dp"
         android:layout_margin="15dp"
-        android:backgroundTint="#E91E63"
+        android:backgroundTint="?android:attr/colorPressedHighlight"
         android:onClick="onClickViewReseption"
         android:text="View Reception"
         android:textColor="@color/black"
@@ -69,30 +68,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button7" />
 
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:layout_marginTop="16dp"
-        android:text="Manager"
-        android:textColor="#009688"
-        android:textSize="34sp"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/button15"
         android:layout_width="226dp"
         android:layout_height="50dp"
         android:layout_margin="15dp"
-        android:backgroundTint="@color/design_default_color_secondary"
+        android:backgroundTint="?android:attr/textColorHighlight"
         android:onClick="btnOnClickAddService"
         android:text="Add Service"
-        android:textColor="@color/design_default_color_primary"
+        android:textColor="?android:attr/statusBarColor"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -104,10 +88,10 @@
         android:layout_width="226dp"
         android:layout_height="50dp"
         android:layout_margin="15dp"
-        android:backgroundTint="@color/design_default_color_secondary"
+        android:backgroundTint="?android:attr/colorPressedHighlight"
         android:onClick="btnOnClickViewService"
         android:text="View Service"
-        android:textColor="@color/design_default_color_primary"
+        android:textColor="?android:attr/statusBarColor"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -119,14 +103,41 @@
         android:layout_width="226dp"
         android:layout_height="50dp"
         android:layout_margin="15dp"
-        android:backgroundTint="@android:color/holo_orange_dark"
+        android:backgroundTint="@android:color/holo_red_light"
         android:onClick="btnOnClickViewChanged"
         android:text="View Changed"
-        android:textColor="@android:color/holo_red_light"
+        android:textColor="@color/purple_200"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button16" />
+
+    <Button
+        android:layout_width="90dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="4dp"
+        android:backgroundTint="@color/design_default_color_error"
+        android:onClick="btnOnClickBack"
+        android:text="Log Out"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:cornerRadius="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.009"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="106dp"
+        android:layout_height="93dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="160dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_manager" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

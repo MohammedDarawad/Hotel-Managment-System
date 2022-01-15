@@ -2,9 +2,11 @@ package com.example.hotelmanagmentsystem.AlwanWork;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.hotelmanagmentsystem.R;
@@ -112,4 +114,8 @@ public class ViewChanged extends AppCompatActivity {
         editor = prefs.edit();
     }
 
+    public void btnOnClickBack(View view) {
+        Intent intent = new Intent(this, Manegar.class);
+        startActivity(intent);
+    }
 }

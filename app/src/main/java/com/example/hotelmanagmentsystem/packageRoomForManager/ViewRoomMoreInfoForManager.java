@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -35,6 +37,8 @@ public class ViewRoomMoreInfoForManager extends AppCompatActivity {
     private ImageURLData[] imageURLs;
     private Gson gson;
     private String reserved;
+    private TextView txt;
+    private Button btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,8 @@ public class ViewRoomMoreInfoForManager extends AppCompatActivity {
         setContentView(R.layout.activity_view_room_more_info_for_manager);
         sliderView = findViewById(R.id.RSlider);
         txtInfo = findViewById(R.id.txtAllInfo);
+        txt=findViewById(R.id.txtCanNotEdit);
+        btn = findViewById(R.id.btnEditInfo);
         intent = getIntent();
         gson=new Gson();
         rId =intent.getIntExtra("rId",0);
@@ -49,6 +55,10 @@ public class ViewRoomMoreInfoForManager extends AppCompatActivity {
         isReserved = intent.getIntExtra("isReserved",0);
         type=intent.getStringExtra("type");
         capacity=intent.getIntExtra("capacity",0);
+        if (isReserved == 1){
+            btn.setVisibility(View.GONE);
+            txt.setVisibility(View.VISIBLE);
+        }
         getRoomInfo();
         getImageURLs();
 
