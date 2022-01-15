@@ -54,8 +54,28 @@ public class RequestedServicesAdapter extends RecyclerView.Adapter<RequestedServ
         TextView tvRId = cardView.findViewById(R.id.tvRId);
         tvRId.setText(requestedServicesList.get(holder.getAdapterPosition()).getrId() + "");
 
+        String nameApiURL = "http://10.0.2.2/get-service-name.php?sId=" + requestedServicesList.get(holder.getAdapterPosition()).getsId();
         TextView tvSId = cardView.findViewById(R.id.tvSId);
-        tvSId.setText(requestedServicesList.get(holder.getAdapterPosition()).getsId() + "");
+        StringRequest request = new StringRequest(Request.Method.GET, nameApiURL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject responceJsonObject = new JSONObject(response);
+                    if (responceJsonObject.has("name")) {
+                        tvSId.setText(responceJsonObject.getString("name"));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Error", error.toString());
+            }
+        });
+        RequestQueueSingleton.getInstance(context).addToRequestQueue(request);
 
         Button btComplete = cardView.findViewById(R.id.btComplete);
 
