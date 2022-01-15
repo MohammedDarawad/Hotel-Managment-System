@@ -2,6 +2,8 @@ package com.example.hotelmanagmentsystem;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,6 +26,7 @@ public class ReceptionistManageRequests extends AppCompatActivity {
     private final Gson gson = new Gson();
     private final String apiURL = "http://10.0.2.2/get-requestedservices.php";
     private RecyclerView rvRequests;
+    private TextView tvError;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,7 @@ public class ReceptionistManageRequests extends AppCompatActivity {
         setContentView(R.layout.activity_receptionist_manage_requests);
 
         rvRequests = findViewById(R.id.rvRequests);
+        tvError = findViewById(R.id.tvError2);
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, apiURL,
                 null, new Response.Listener<JSONArray>() {
@@ -39,9 +43,15 @@ public class ReceptionistManageRequests extends AppCompatActivity {
                 List<RequestedService> requestedServicesList = new Gson().fromJson(response.toString(), new TypeToken<List<RequestedService>>() {
                 }.getType());
 
-                rvRequests.setLayoutManager(new LinearLayoutManager(ReceptionistManageRequests.this));
-                RequestedServicesAdapter adapter = new RequestedServicesAdapter(requestedServicesList, getApplicationContext());
-                rvRequests.setAdapter(adapter);
+                if (requestedServicesList.size() != 0) {
+                    rvRequests.setLayoutManager(new LinearLayoutManager(ReceptionistManageRequests.this));
+                    RequestedServicesAdapter adapter = new RequestedServicesAdapter(requestedServicesList, getApplicationContext());
+                    rvRequests.setAdapter(adapter);
+                } else {
+                    rvRequests.setVisibility(View.GONE);
+                    tvError.setVisibility(View.VISIBLE);
+                }
+
             }
         }, new Response.ErrorListener() {
             @Override

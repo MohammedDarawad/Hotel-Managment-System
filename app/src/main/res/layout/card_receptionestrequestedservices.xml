@@ -1,35 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:layout_margin="20dp">
+    android:layout_height="70dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginTop="15dp"
+    android:layout_marginRight="20dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="2dp"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/tvRId"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="TextView" />
+            android:gravity="center|center_horizontal"
+            android:text="@string/receptionestManageRequests_rIdValuetext"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tvSId"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="TextView" />
+            android:gravity="center|center_horizontal"
+            android:text="@string/receptionestManageRequests_serviceValuetext" />
 
         <Button
             android:id="@+id/btComplete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="60dp"
             android:layout_weight="1"
+            android:backgroundTint="#60BCE1FA"
             android:onClick="complete"
-            android:text="Complete" />
+            android:text="@string/receptionestManageRequests_completeButtonText"
+            android:textColor="@color/color_buttonBlue" />
 
         <TextView
             android:id="@+id/tvRequested"

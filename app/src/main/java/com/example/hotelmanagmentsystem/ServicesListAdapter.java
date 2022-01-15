@@ -1,4 +1,4 @@
-package com.example.hotelmanagmentsystem.model;
+package com.example.hotelmanagmentsystem;
 
 import android.content.Context;
 import android.util.Log;
@@ -19,7 +19,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
-import com.example.hotelmanagmentsystem.R;
+import com.example.hotelmanagmentsystem.model.RequestQueueSingleton;
+import com.example.hotelmanagmentsystem.model.Service;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,15 +28,15 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CaptionedImagesAdapter
-        extends RecyclerView.Adapter<CaptionedImagesAdapter.ViewHolder> {
+public class ServicesListAdapter
+        extends RecyclerView.Adapter<ServicesListAdapter.ViewHolder> {
 
     private final String apiURL = "http://10.0.2.2/request-service.php";
     private final Service[] servicesList;
     private final Context context;
     private final String rId;
 
-    public CaptionedImagesAdapter(Service[] servicesList, Context context, String rId) {
+    public ServicesListAdapter(Service[] servicesList, Context context, String rId) {
         this.servicesList = servicesList;
         this.context = context;
         this.rId = rId;

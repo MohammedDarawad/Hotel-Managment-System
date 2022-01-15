@@ -14,4 +14,11 @@
     <string name="servicesList_NameValueText">value</string>
     <string name="servicesList_priceValueText">value</string>
     <string name="servicesList_requestButtonText">Request</string>
+    <string name="receptionestHomePage_manageServicesText">Manage Requested Services</string>
+    <string name="receptionestHomePage_welcomeText">Welcome </string>
+    <string name="receptionestHomePage_logoutText">Logout</string>
+    <string name="receptionestManageRequests_noRequestsText">No Requested Services</string>
+    <string name="receptionestManageRequests_rIdValuetext" >value</string>
+    <string name="receptionestManageRequests_serviceValuetext">value</string>
+    <string name="receptionestManageRequests_completeButtonText">Complete</string>
 </resources>

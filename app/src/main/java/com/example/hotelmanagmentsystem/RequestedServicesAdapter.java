@@ -62,12 +62,12 @@ public class RequestedServicesAdapter extends RecyclerView.Adapter<RequestedServ
         btComplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                handleCompleteRequest(holder.getAdapterPosition());
+                handleCompleteRequest(holder.getAdapterPosition(), requestedServicesList.get(holder.getAdapterPosition()).getId());
             }
         });
     }
 
-    private void handleCompleteRequest(int position) {
+    private void handleCompleteRequest(int position, int id) {
         StringRequest request = new StringRequest(Request.Method.POST, completeRequestApiURL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -97,7 +97,7 @@ public class RequestedServicesAdapter extends RecyclerView.Adapter<RequestedServ
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("id", requestedServicesList.get(position).getId() + "");
+                params.put("id", id + "");
                 return params;
             }
 

@@ -12,7 +12,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.example.hotelmanagmentsystem.model.CaptionedImagesAdapter;
 import com.example.hotelmanagmentsystem.model.RequestQueueSingleton;
 import com.example.hotelmanagmentsystem.model.Service;
 import com.google.gson.Gson;
@@ -51,7 +50,7 @@ public class ServicesList extends AppCompatActivity {
                     }
                 }
                 rvServicesList.setLayoutManager(new LinearLayoutManager(ServicesList.this));
-                CaptionedImagesAdapter adapter = new CaptionedImagesAdapter(servicesList, ServicesList.this, intent.getStringExtra("rId"));
+                ServicesListAdapter adapter = new ServicesListAdapter(servicesList, ServicesList.this, intent.getStringExtra("rId"));
                 rvServicesList.setAdapter(adapter);
             }
         }, new Response.ErrorListener() {
