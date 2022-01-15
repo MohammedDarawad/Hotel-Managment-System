@@ -13,6 +13,9 @@
         android:theme="@style/Theme.HotelManagmentSystem"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ChangePassword"
+            android:exported="false" />
+        <activity
             android:name=".ReceptionistManageRequests"
             android:exported="false" />
         <activity
