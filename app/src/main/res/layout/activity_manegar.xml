@@ -9,7 +9,7 @@
 
     <Button
         android:id="@+id/button5"
-        android:layout_width="226dp"
+        android:layout_width="0dp"
         android:layout_height="49dp"
         android:layout_margin="15dp"
         android:backgroundTint="?android:attr/textColorHighlight"
@@ -17,6 +17,7 @@
         android:text="Add Room"
         android:textColor="@color/cardview_light_background"
         android:textSize="20sp"
+        app:cornerRadius="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +25,7 @@
 
     <Button
         android:id="@+id/button6"
-        android:layout_width="226dp"
+        android:layout_width="0dp"
         android:layout_height="49dp"
         android:layout_margin="15dp"
         android:layout_marginTop="92dp"
@@ -33,6 +34,7 @@
         android:text="View Rooms"
         android:textColor="@color/cardview_light_background"
         android:textSize="20sp"
+        app:cornerRadius="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,15 +42,16 @@
 
     <Button
         android:id="@+id/button7"
-        android:layout_width="226dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_margin="15dp"
         android:layout_marginTop="12dp"
         android:backgroundTint="?android:attr/textColorHighlight"
         android:onClick="onClickAddReseption"
-        android:text="Add Receptione"
+        android:text="Add Receptionist"
         android:textColor="@color/design_default_color_on_secondary"
         android:textSize="20sp"
+        app:cornerRadius="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,21 +59,22 @@
 
     <Button
         android:id="@+id/button11"
-        android:layout_width="226dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_margin="15dp"
         android:backgroundTint="?android:attr/colorPressedHighlight"
         android:onClick="onClickViewReseption"
-        android:text="View Reception"
+        android:text="View Receptionist"
         android:textColor="@color/black"
         android:textSize="20sp"
+        app:cornerRadius="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button7" />
 
     <Button
         android:id="@+id/button15"
-        android:layout_width="226dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_margin="15dp"
         android:backgroundTint="?android:attr/textColorHighlight"
@@ -79,13 +83,14 @@
         android:textColor="?android:attr/statusBarColor"
         android:textSize="20sp"
         android:textStyle="bold"
+        app:cornerRadius="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button11" />
 
     <Button
         android:id="@+id/button16"
-        android:layout_width="226dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_margin="15dp"
         android:backgroundTint="?android:attr/colorPressedHighlight"
@@ -94,13 +99,14 @@
         android:textColor="?android:attr/statusBarColor"
         android:textSize="20sp"
         android:textStyle="bold"
+        app:cornerRadius="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button15" />
 
     <Button
         android:id="@+id/button19"
-        android:layout_width="226dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_margin="15dp"
         android:backgroundTint="@android:color/holo_red_light"
@@ -109,6 +115,7 @@
         android:textColor="@color/purple_200"
         android:textSize="20sp"
         android:textStyle="bold"
+        app:cornerRadius="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button16" />
