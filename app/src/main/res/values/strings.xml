@@ -22,4 +22,9 @@
     <string name="receptionestManageRequests_serviceValuetext">value</string>
     <string name="receptionestManageRequests_completeButtonText">Complete</string>
     <string name="changePassword_changeText">Change</string>
+    <string-array name="changed">
+        <item>Changed For Receptionist</item>
+        <item>Changed For Rooms</item>
+        <item>Changed For Services</item>
+    </string-array>
 </resources>

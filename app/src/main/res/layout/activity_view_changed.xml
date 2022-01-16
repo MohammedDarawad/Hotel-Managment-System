@@ -10,6 +10,7 @@
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:scrollbarStyle="insideInset"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -23,6 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <Button
                 android:layout_width="74dp"
                 android:layout_height="39dp"
@@ -39,6 +41,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:entries="@array/changed"
+                android:minHeight="48dp" />
+
             <TextView
                 android:id="@+id/txtChanged"
                 android:layout_width="match_parent"
@@ -46,7 +58,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="15dp"
                 android:hint="No Changed For Receptionist"
-                android:textColor="#FF0000"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -56,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:hint="No Changed For Room"
-                android:textColor="#673AB7"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
