@@ -42,7 +42,6 @@ public class Login extends AppCompatActivity {
     private SharedPreferences.Editor editor;
     private Gson gson;
     private JSONObject responceJsonObject;
-    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +55,12 @@ public class Login extends AppCompatActivity {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         editor = sharedPreferences.edit();
         gson = new Gson();
+
+        if (sharedPreferences.getString("emailAddress", "") != null) {
+            etEmail.setText(sharedPreferences.getString("emailAddress", ""));
+            etPassword.setText(sharedPreferences.getString("password", ""));
+            cbRemeberLogin.setChecked(true);
+        }
     }
 
     public void login(View view) throws JSONException {
@@ -133,10 +138,18 @@ public class Login extends AppCompatActivity {
 
     private void loginIsValid() throws JSONException {
         if (cbRemeberLogin.isChecked()) {
-            editor.putString("emailAddress", "emailAddress");
-            editor.commit();
+            editor.putString("emailAddress", emailAddress);
+            editor.putString("password", password);
+        } else {
+            if (!sharedPreferences.getString("emailAddress", "").isEmpty()) {
+                editor.remove("emailAddress");
+                editor.remove("password");
+            }
         }
+        editor.commit();
+
         int userType = responceJsonObject.getJSONObject("user").getInt("userType");
+        Intent intent = null;
         if (userType == 0) {
             intent = new Intent(this, Manegar.class);
         } else if (userType == 1) {
