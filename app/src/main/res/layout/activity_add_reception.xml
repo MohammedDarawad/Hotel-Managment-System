@@ -8,7 +8,7 @@
     tools:context=".packageReceptionForManager.AddReception">
 
     <EditText
-        android:id="@+id/TextFreeFor"
+        android:id="@+id/TextFreeForRooms"
         android:layout_width="0dp"
         android:layout_height="37dp"
         android:layout_margin="10dp"
@@ -69,14 +69,14 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TextFreeFor" />
+        app:layout_constraintTop_toBottomOf="@+id/TextFreeForRooms" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Add Reception"
+        android:text="Add Receptionist"
         android:textColor="@color/teal_700"
         android:textSize="34sp"
         android:textStyle="bold|italic"

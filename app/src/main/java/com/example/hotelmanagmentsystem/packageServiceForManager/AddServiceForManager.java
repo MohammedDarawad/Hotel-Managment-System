@@ -67,7 +67,7 @@ private EditText txtFreeFor;
         txtName=findViewById(R.id.TextServiceName);
         txtDescription=findViewById(R.id.TextDescription);
         txtPrice=findViewById(R.id.TextPrice);
-        txtFreeFor=findViewById(R.id.TextFreeFor);
+        txtFreeFor=findViewById(R.id.TextFreeForRooms);
     }
     String name;
     String description;

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="310dp"
     android:layout_margin="20dp"
-    card_view:cardCornerRadius="4dp"
+    card_view:cardCornerRadius="25dp"
     card_view:cardElevation="2dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +16,7 @@
 
         <ImageView
             android:id="@+id/firstRomeImage"
-            android:layout_width="371dp"
+            android:layout_width="0dp"
             android:layout_height="213dp"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"

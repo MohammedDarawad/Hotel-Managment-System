@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/manag_back"
+    android:background="@drawable/ravy_blue"
     tools:context=".AlwanWork.Manegar">
 
     <Button
@@ -139,10 +139,10 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="106dp"
-        android:layout_height="93dp"
+        android:layout_width="148dp"
+        android:layout_height="118dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="160dp"
+        android:layout_marginEnd="132dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_manager" />

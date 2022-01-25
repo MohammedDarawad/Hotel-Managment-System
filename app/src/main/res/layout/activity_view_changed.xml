@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="15dp"
-                android:hint="No Changed For Receptionist"
+                android:hint="              No Changed For Receptionist"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -67,7 +67,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:hint="No Changed For Room"
+                android:hint="                     No Changed For Room"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -77,7 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:hint="No Changed For Service"
+                android:hint="                   No Changed For Service"
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/black"
                 android:textSize="20sp"

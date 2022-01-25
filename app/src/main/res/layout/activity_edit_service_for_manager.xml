@@ -8,7 +8,7 @@
     tools:context=".packageServiceForManager.EditServiceForManager">
 
     <EditText
-        android:id="@+id/TextFreeFor"
+        android:id="@+id/TextFreeForRooms"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -150,7 +150,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.508"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TextFreeFor" />
+            app:layout_constraintTop_toBottomOf="@+id/TextFreeForRooms" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

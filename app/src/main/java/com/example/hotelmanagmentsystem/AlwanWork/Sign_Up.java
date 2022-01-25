@@ -16,6 +16,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.hotelmanagmentsystem.HomePage;
+import com.example.hotelmanagmentsystem.Login;
 import com.example.hotelmanagmentsystem.R;
 
 import org.json.JSONException;
@@ -42,7 +43,7 @@ public class Sign_Up extends AppCompatActivity {
         edtFirstName = findViewById(R.id.TextServiceName);
         edtLastName = findViewById(R.id.TextDescription);
         edtEmail = findViewById(R.id.TextPrice);
-        edtPhoneNumber = findViewById(R.id.TextFreeFor);
+        edtPhoneNumber = findViewById(R.id.TextFreeForRooms);
         edtPassword = findViewById(R.id.edtTextPassword);
 
     }
@@ -59,7 +60,7 @@ public class Sign_Up extends AppCompatActivity {
          Password = edtPassword.getText().toString();
         if (validateInputs()) {
             addUsers(FirstName, LastName, Email, PhoneNumber, Password);
-            Intent intent = new Intent(Sign_Up.this, HomePage.class);
+            Intent intent = new Intent(Sign_Up.this, Login.class);
             startActivity(intent);
         }
     }
@@ -108,6 +109,8 @@ public class Sign_Up extends AppCompatActivity {
                     // on below line we are displaying a success toast message.
                     Toast.makeText(Sign_Up.this,
                             jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+                    Toast.makeText(Sign_Up.this,
+                            "Now You Can Log In With Your New Account", Toast.LENGTH_LONG).show();
                 } catch ( JSONException e) {
                     e.printStackTrace();
                 }

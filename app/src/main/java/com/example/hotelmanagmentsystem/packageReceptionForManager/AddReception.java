@@ -28,8 +28,6 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -71,7 +69,7 @@ public class AddReception extends AppCompatActivity {
         edtFirstName = findViewById(R.id.TextServiceName);
         edtLastName = findViewById(R.id.TextDescription);
         edtEmail = findViewById(R.id.TextPrice);
-        edtPhoneNumber = findViewById(R.id.TextFreeFor);
+        edtPhoneNumber = findViewById(R.id.TextFreeForRooms);
         edtPassword = findViewById(R.id.edtTextPassword);
 
     }

@@ -91,7 +91,9 @@ public class ViewChanged extends AppCompatActivity {
                 String item = spinner.getSelectedItem().toString();
                 if(item.equals("Changed For Receptionist")) {
                     if (st.equals("") && st1.equals("")) {
-
+                        txt.setVisibility(View.VISIBLE);
+                        txt2.setVisibility(View.GONE);
+                        txt3.setVisibility(View.GONE);
                     } else {
                         txt.setVisibility(View.VISIBLE);
                         txt2.setVisibility(View.GONE);
@@ -102,7 +104,9 @@ public class ViewChanged extends AppCompatActivity {
                 }
                 else  if(item.equals("Changed For Rooms")) {
                     if (st2.equals("") && st3.equals("") && st4.equals("")) {
-
+                        txt.setVisibility(View.GONE);
+                        txt2.setVisibility(View.VISIBLE);
+                        txt3.setVisibility(View.GONE);
                     } else {
                         txt.setVisibility(View.GONE);
                         txt2.setVisibility(View.VISIBLE);
@@ -116,7 +120,9 @@ public class ViewChanged extends AppCompatActivity {
                 else if(item.equals("Changed For Services")) {
 
                     if (st5.equals("") && st6.equals("") && st7.equals("")) {
-
+                        txt.setVisibility(View.GONE);
+                        txt2.setVisibility(View.GONE);
+                        txt3.setVisibility(View.VISIBLE);
                     } else {
                         txt.setVisibility(View.GONE);
                         txt2.setVisibility(View.GONE);

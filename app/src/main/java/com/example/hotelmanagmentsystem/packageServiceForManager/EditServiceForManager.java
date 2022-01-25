@@ -75,12 +75,12 @@ private String freeFor;
     String name1;
     String description1;
     String price1;
-    String freeFor1;
+    String free = "";
     private void setUpView() {
         txtName = findViewById(R.id.TextServiceName);
         txtDescription = findViewById(R.id.TextDescription);
         txtPrice = findViewById(R.id.TextPrice);
-        txtFreeFor = findViewById(R.id.TextFreeFor);
+        txtFreeFor = findViewById(R.id.TextFreeForRooms);
         txtName.setHint("Old Name is "+name);
         txtDescription.setHint("Old Description is " +description);
         txtPrice.setHint("Old Price is "+price);
@@ -110,7 +110,7 @@ private String freeFor;
                         name1 = " Name Not Changed";
                     }
                     else {
-                        name1 = " Name: " + txtName.getText().toString();
+                        name1 = " New Name: " + txtName.getText().toString();
                     }
                     if (txtDescription.getText().toString().equals("")){
                         description1 = " ,Description Not Changed";
@@ -126,19 +126,20 @@ private String freeFor;
                     }
                     if (txtFreeFor.getText().equals(""))
                     {
-                        freeFor1 = " and Free For Rooms Type Not Changed";
+                        if (txtFreeFor.getText().equals(" ")){
+                            free +=" and Its not free for any rooms";
+                        }
+                        else if (!txtFreeFor.getText().equals(" ")){
+                            free += " and its Free For Rooms Types " + txtFreeFor.getText().toString();
+                        }
+
                     }
                     else{
-                        if (txtFreeFor.getText().equals(" ")){
-                            freeFor1 =" and Its not free for any rooms";
-                        }
-                        else {
-                         freeFor1 = "and its Free For Rooms Types " + txtFreeFor.getText().toString();
-                        }
+                        free += " and Free For Rooms Type Not Changed";
                     }
 
-                    st += "\n You Edit Service: " + name1+description1+
-                            price1 +freeFor1 +" On  "
+                    st += "\n Service Name "+name+ "You Edit This Service: " + name1+description1+
+                            price1 +free +" On  "
                             + java.time.LocalDate.now()+"\n" ;
                     Gson gson = new Gson();
                     String editService = gson.toJson(st);
