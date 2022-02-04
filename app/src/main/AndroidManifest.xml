@@ -76,6 +76,9 @@
             android:name=".Search"
             android:exported="false" />
         <activity
+            android:name=".WeatherActivite"
+            android:exported="false" />
+        <activity
             android:name=".HomePage"
             android:exported="true">
             <intent-filter>

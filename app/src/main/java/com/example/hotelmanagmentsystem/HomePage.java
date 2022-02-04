@@ -72,7 +72,7 @@ public class HomePage extends AppCompatActivity {
 
 
     public void showWeatherclick(View view) {
-        Intent intent = new Intent(this, HomePage.class);
+        Intent intent = new Intent(this, WeatherActivite.class);
         startActivity(intent);
     }
 
