@@ -34,6 +34,7 @@ public class Login extends AppCompatActivity {
     private final String errorMessage_Login = "No Such User Exists";
     private RequestQueue queue;
     private String emailAddress;
+    private String uId;
     private String password;
     private EditText etEmail;
     private EditText etPassword;
@@ -102,6 +103,8 @@ public class Login extends AppCompatActivity {
                     responceJsonObject = new JSONObject(response);
                     if (responceJsonObject.has("user")) {
                         if (!responceJsonObject.isNull("user")) {
+                            JSONObject responceJsonObject2 = responceJsonObject.getJSONObject("user");
+                            uId = responceJsonObject2.getString("uId");
                             loginIsValid();
                         } else {
                             etPassword.setText("");
@@ -157,7 +160,7 @@ public class Login extends AppCompatActivity {
         } else if (userType == 2) {
             intent = new Intent(this, HomePage.class);
         }
-        intent.putExtra("emailAddress", emailAddress);
+        intent.putExtra("uId", uId);
         startActivity(intent);
     }
 }

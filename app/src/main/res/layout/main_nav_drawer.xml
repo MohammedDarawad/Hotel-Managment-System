@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    //Omar Tawafshah
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_margin="10dp"
+        android:onClick="clickLogo"
+        android:src="@drawable/ic_baseline_home_24"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="#635353" />
+
+    <LinearLayout
+        android:id="@+id/searchClick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:onClick="clickSearch"
+        android:layout_marginTop="50dp"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Search Room "
+            android:padding="12dp"
+            android:layout_marginStart="16dp"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="48dp"
+            android:src="@drawable/ic_search"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/showWeather"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:onClick="showWeatherclick"
+        android:layout_marginTop="30dp"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Show Weather "
+            android:padding="12dp"
+            android:layout_marginStart="16dp"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="48dp"
+            android:src="@drawable/ic_weather"/>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/loginAndReserved"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:onClick="clickLogin"
+        android:layout_marginTop="30dp"
+        >
+        <TextView
+            android:id="@+id/tloginAndReserved"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Log in "
+            android:padding="12dp"
+            android:layout_marginStart="16dp"
+            />
+        <ImageView
+            android:id="@+id/imloginAndReserved"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="48dp"
+            android:src="@drawable/ic_login"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/signUpAndLogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:onClick="clickSignUp"
+        android:layout_marginTop="30dp"
+        >
+        <TextView
+            android:id="@+id/tsignUpAndLogout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Sign Up "
+            android:padding="12dp"
+            android:layout_marginStart="16dp"
+            />
+        <ImageView
+            android:id="@+id/imsignUpAndLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="48dp"
+            android:src="@drawable/ic_create"/>
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>
