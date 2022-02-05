@@ -155,8 +155,10 @@ public class Login extends AppCompatActivity {
         Intent intent = null;
         if (userType == 0) {
             intent = new Intent(this, Manegar.class);
+            intent.putExtra("emailAddress", emailAddress);
         } else if (userType == 1) {
             intent = new Intent(this, ReceptionistHomePage.class);
+            intent.putExtra("firstName", responceJsonObject.getJSONObject("user").getString("firstName"));
         } else if (userType == 2) {
             intent = new Intent(this, HomePage.class);
         }

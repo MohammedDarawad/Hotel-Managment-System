@@ -97,7 +97,7 @@ public class ChangePassword extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("emailAddress", intent.getStringExtra("emailAddress"));
+                params.put("uId", intent.getStringExtra("uId"));
                 params.put("oldPassword", etOld.getText().toString());
                 params.put("newPassword", etPassword.getText().toString());
                 return params;
