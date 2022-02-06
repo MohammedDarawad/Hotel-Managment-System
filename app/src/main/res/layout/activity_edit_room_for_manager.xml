@@ -23,7 +23,7 @@
         android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="32dp"
         android:text="Delete Room"
         android:textColor="#0FB816"
         android:textSize="34sp"
@@ -59,6 +59,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtEditType" />
 
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="190dp"
+        android:layout_height="33dp"
+        android:layout_margin="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:text="Edit Capacity:"
+        android:textColor="#FF0000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtEditCapacity" />
+
     <EditText
         android:id="@+id/txtEditType"
         android:layout_width="392dp"
@@ -87,11 +101,25 @@
         app:layout_constraintTop_toBottomOf="@+id/textView17"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
+    <EditText
+        android:id="@+id/txtEditPrice"
+        android:layout_width="392dp"
+        android:layout_height="45dp"
+        android:layout_margin="10dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView15"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
     <Button
         android:id="@+id/button13"
         android:layout_width="121dp"
         android:layout_height="49dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="12dp"
         android:backgroundTint="@android:color/holo_blue_dark"
         android:onClick="btnOnClickEdit"
         android:text="Edit"
@@ -99,15 +127,14 @@
         android:textStyle="bold"
         app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEditCapacity" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEditPrice" />
 
     <Button
         android:id="@+id/button14"
         android:layout_width="149dp"
         android:layout_height="59dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="@android:color/holo_blue_dark"
         android:onClick="btnOnClickDelete"
         android:text="Delete"
@@ -126,5 +153,5 @@
         android:background="#03A9F4"
         android:backgroundTint="#03A9F4"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.47195622" />
+        app:layout_constraintGuide_percent="0.62" />
 </androidx.constraintlayout.widget.ConstraintLayout>

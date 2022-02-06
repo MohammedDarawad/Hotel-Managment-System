@@ -33,6 +33,7 @@ public class AddRoom extends AppCompatActivity {
 EditText edtFloorNumber;
 EditText edtRoomType;
 EditText edtRoomCapacity;
+EditText edtRoomPrice;
     private SharedPreferences prefs;
     private SharedPreferences.Editor editor;
     public static final String prefRoom = "prefRoom";
@@ -64,23 +65,26 @@ EditText edtRoomCapacity;
         edtFloorNumber=findViewById(R.id.edtFloorNumber);
         edtRoomType=findViewById(R.id.edtRoomType);
         edtRoomCapacity=findViewById(R.id.edtRoomCapacity);
+        edtRoomPrice=findViewById(R.id.edtRoomPrice);
     }
 
   String FloorNumber;
   String RoomType;
   String RoomCapacity;
+  String RoomPrice;
     public void btnOnClickAdd(View view) {
         InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         mgr.hideSoftInputFromWindow(view.getWindowToken(),0);
        FloorNumber = edtFloorNumber.getText().toString();
        RoomType = edtRoomType.getText().toString();
        RoomCapacity = edtRoomCapacity.getText().toString();
+       RoomPrice = edtRoomPrice.getText().toString();
         if (validateInputs()) {
-            addRoom(FloorNumber, RoomType, RoomCapacity);
+            addRoom(FloorNumber, RoomType, RoomCapacity,RoomPrice);
         }
     }
 
-    private void addRoom(String floorNumber, String roomType, String roomCapacity) {
+    private void addRoom(String floorNumber, String roomType, String roomCapacity,String roomPrice) {
         String url = "http://10.0.2.2:80/add_room.php";
         RequestQueue queue = Volley.newRequestQueue(AddRoom.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
@@ -94,12 +98,16 @@ EditText edtRoomCapacity;
                     Toast.makeText(AddRoom.this,
                             jsonObject.getString("message"), Toast.LENGTH_LONG).show();
                     st += "\n You Add Room Floor Number: " + floorNumber +" ,Type: "+
-                            roomType + " ,Capacity: " + roomCapacity +" On" +" "
+                            roomType + " ,Capacity: " + roomCapacity + " ,Price: "+ roomPrice +" On" +" "
                             + java.time.LocalDate.now()+"\n" ;
                     Gson gson = new Gson();
                     String addRoom = gson.toJson(st);
                     editor.putString(prefRoom,addRoom);
                     editor.commit();
+                    edtRoomType.setText("");
+                    edtRoomCapacity.setText("");
+                    edtFloorNumber.setText("");
+                    edtRoomPrice.setText("");
                 } catch ( JSONException e) {
                     e.printStackTrace();
                 }
@@ -132,9 +140,8 @@ EditText edtRoomCapacity;
                 params.put("floor", floorNumber);
                 params.put("type", roomType);
                 params.put("capacity", roomCapacity);
-                edtRoomType.setText("");
-                edtRoomCapacity.setText("");
-                edtFloorNumber.setText("");
+                params.put("price", roomPrice);
+
                 // at last we are returning our params.
                 return params;
             }
@@ -158,6 +165,11 @@ EditText edtRoomCapacity;
         else if (RoomCapacity.isEmpty()) {
             edtRoomCapacity.setError("This field can not be blank");
             edtRoomCapacity.requestFocus();
+            return false;
+        }
+        else if (RoomPrice.isEmpty()) {
+            edtRoomPrice.setError("This field can not be blank");
+            edtRoomPrice.requestFocus();
             return false;
         }
 

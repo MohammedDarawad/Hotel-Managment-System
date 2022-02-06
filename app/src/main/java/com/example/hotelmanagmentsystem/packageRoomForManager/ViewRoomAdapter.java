@@ -84,6 +84,7 @@ public class ViewRoomAdapter extends RecyclerView.Adapter<ViewReceptionAdapter.V
                 intent.putExtra("isReserved",RoomsList[pos].isReserved());
                 intent.putExtra("type",RoomsList[pos].getType());
                 intent.putExtra("capacity", RoomsList[pos].getCapacity());
+                intent.putExtra("price", RoomsList[pos].getPrice());
                 v.getContext().startActivity(intent);
 
             }

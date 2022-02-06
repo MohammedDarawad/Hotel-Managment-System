@@ -6,13 +6,23 @@ public class InitialRoomInfo {
     private int capacity;
     private String type;
     private int isReserved;
+    private double price;
 
-    public InitialRoomInfo(int rId, int floor, int capacity, String type, int isReserved) {
+    public InitialRoomInfo(int rId, int floor, int capacity, String type, int isReserved , double price) {
         this.rId = rId;
         this.floor = floor;
         this.capacity = capacity;
         this.type = type;
         this.isReserved = isReserved;
+        this.price=price;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public int getrId() {

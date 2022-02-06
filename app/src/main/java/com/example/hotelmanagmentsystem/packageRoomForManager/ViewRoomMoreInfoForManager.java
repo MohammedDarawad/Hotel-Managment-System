@@ -33,6 +33,7 @@ public class ViewRoomMoreInfoForManager extends AppCompatActivity {
     private int rId;
     private int isReserved;
     private int capacity;
+    private double price;
     private Intent intent;
     private ImageURLData[] imageURLs;
     private Gson gson;
@@ -55,6 +56,7 @@ public class ViewRoomMoreInfoForManager extends AppCompatActivity {
         isReserved = intent.getIntExtra("isReserved",0);
         type=intent.getStringExtra("type");
         capacity=intent.getIntExtra("capacity",0);
+        price=intent.getDoubleExtra("price",0);
         if (isReserved == 1){
             btn.setVisibility(View.GONE);
             txt.setVisibility(View.VISIBLE);
@@ -114,7 +116,7 @@ public class ViewRoomMoreInfoForManager extends AppCompatActivity {
             reserved = "its not reserved";
         }
         txtInfo.setText("Room Number " +rId+"" + "\n" + "Floor Number " + floor+"" + "\n" + reserved + "\n" +
-                "Room Type is " + type + "\n" + "Room Capacity: " + capacity+"");
+                "Room Type is " + type + "\n" + "Room Capacity: " + capacity+"\n" + "Room Price: " + price);
     }
 
     public void btnOnClickEdit(View view) {
@@ -122,6 +124,7 @@ public class ViewRoomMoreInfoForManager extends AppCompatActivity {
         intent.putExtra("rId",rId );
         intent.putExtra("type",type);
         intent.putExtra("capacity", capacity);
+        intent.putExtra("price" , price);
         startActivity(intent);
     }
     public void btnOnClickBack(View view) {

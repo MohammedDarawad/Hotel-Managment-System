@@ -31,8 +31,10 @@ public class EditRoomForManager extends AppCompatActivity {
     private int rId;
     private String type;
     private int capacity;
+    private double price;
     private EditText txtEditType;
     private EditText txtEditCapacity;
+    private EditText txtEditPrice;
     private int check;
     private SharedPreferences prefs;
     private SharedPreferences.Editor editor;
@@ -48,10 +50,13 @@ public class EditRoomForManager extends AppCompatActivity {
         rId =intent.getIntExtra("rId",0);
         type=intent.getStringExtra("type");
         capacity=intent.getIntExtra("capacity",0);
+        price = intent.getDoubleExtra("price",0);
         txtEditType = findViewById(R.id.txtEditType);
         txtEditType.setHint("Old Type is "+type);
         txtEditCapacity = findViewById(R.id.txtEditCapacity);
         txtEditCapacity.setHint("Old Capacity is "+capacity);
+        txtEditPrice = findViewById(R.id.txtEditPrice);
+        txtEditPrice.setHint("Old price is " + price);
         setupSharedPrefs();
         getPref();
     }
@@ -75,16 +80,39 @@ public class EditRoomForManager extends AppCompatActivity {
         editor = prefs.edit();
     }
     public void btnOnClickEdit(View view) {
-        if (!txtEditType.getText().toString().equals("") && txtEditCapacity.getText().toString().equals("")){
+        if (!txtEditType.getText().toString().equals("") && txtEditCapacity.getText().toString().equals("") &&
+        txtEditPrice.getText().toString().equals("")){
             check = 0;
             editRoom(check);
         }
-        else if(txtEditType.getText().toString().equals("") && !txtEditCapacity.getText().toString().equals("")){
+        else if(txtEditType.getText().toString().equals("") && !txtEditCapacity.getText().toString().equals("")
+        && txtEditPrice.getText().toString().equals("")){
             check = 1;
             editRoom(check);
         }
-        else if(!txtEditType.getText().toString().equals("") && !txtEditCapacity.getText().toString().equals("")){
+        else if(!txtEditType.getText().toString().equals("") && !txtEditCapacity.getText().toString().equals("") &&
+                txtEditPrice.getText().toString().equals("")){
             check = 2;
+            editRoom(check);
+        }
+        else if(txtEditType.getText().toString().equals("") && txtEditCapacity.getText().toString().equals("") &&
+                !txtEditPrice.getText().toString().equals("")){
+            check = 3;
+            editRoom(check);
+        }
+        else if(!txtEditType.getText().toString().equals("") && txtEditCapacity.getText().toString().equals("") &&
+                !txtEditPrice.getText().toString().equals("")){
+            check = 4;
+            editRoom(check);
+        }
+        else if(txtEditType.getText().toString().equals("") && !txtEditCapacity.getText().toString().equals("") &&
+                !txtEditPrice.getText().toString().equals("")){
+            check = 5;
+            editRoom(check);
+        }
+        else if(!txtEditType.getText().toString().equals("") && !txtEditCapacity.getText().toString().equals("") &&
+                !txtEditPrice.getText().toString().equals("")){
+            check = 6;
             editRoom(check);
         }
     }
@@ -111,10 +139,34 @@ public class EditRoomForManager extends AppCompatActivity {
                                 txtEditCapacity.getText().toString() +" On "
                                 +java.time.LocalDate.now()+"\n" ;
                     }
-                    else {
+                    else if(check == 2){
                         st += "\n You Edit Room Number " + rId +" ,Set Type: "+
-                                txtEditType.getText().toString() + "and Set Capacity: "+
+                                txtEditType.getText().toString() + " and Set Capacity: "+
                                 txtEditCapacity.getText().toString() +" On "
+                                +java.time.LocalDate.now()+"\n" ;
+                    }
+                    else if(check == 3){
+                        st += "\n You Edit Room Number " + rId +" ,Set Price: "+
+                                txtEditPrice.getText().toString() +" On "
+                                +java.time.LocalDate.now()+"\n" ;
+                    }
+                    else if(check == 4){
+                        st += "\n You Edit Room Number " + rId +" ,Set Type: "+
+                                txtEditType.getText().toString() + " and Set Price: "+
+                                txtEditPrice.getText().toString() +" On "
+                                +java.time.LocalDate.now()+"\n" ;
+                    }
+                    else if(check == 5){
+                        st += "\n You Edit Room Number " + rId +" ,Set Capacity: "+
+                                txtEditCapacity.getText().toString() + " and Set Price: "+
+                                txtEditPrice.getText().toString() +" On "
+                                +java.time.LocalDate.now()+"\n" ;
+                    }
+                    else if(check == 6){
+                        st += "\n You Edit Room Number " + rId +" ,Set Type: "+
+                                txtEditType.getText().toString() + " ,Set Price: "+
+                                txtEditPrice.getText().toString() + " and Set Capacity: "+
+                                txtEditCapacity.getText().toString()  +" On "
                                 +java.time.LocalDate.now()+"\n" ;
                     }
                     Gson gson = new Gson();
@@ -154,6 +206,7 @@ public class EditRoomForManager extends AppCompatActivity {
                 params.put("rId", rId+"");
                 params.put("type", txtEditType.getText().toString());
                 params.put("capacity", txtEditCapacity.getText().toString());
+                params.put("price" , txtEditPrice.getText().toString());
 
                 // at last we are returning our params.
                 return params;
