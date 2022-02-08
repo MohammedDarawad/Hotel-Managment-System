@@ -8,10 +8,10 @@
         android:title="Refreash"
         app:showAsAction="always" />
 
-    <item android:id="@+id/changePassword"
-        android:title="Change Password">
-    </item>
-    <item android:id="@+id/logout"
-        android:title="Logout">
-    </item>
+    <item
+        android:id="@+id/changePassword"
+        android:title="@string/receptionist_menu_changepassword_text"></item>
+    <item
+        android:id="@+id/logout"
+        android:title="@string/receptionist_menu_logout_text"></item>
 </menu>

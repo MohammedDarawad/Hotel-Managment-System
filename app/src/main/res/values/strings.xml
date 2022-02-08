@@ -22,6 +22,8 @@
     <string name="receptionestManageRequests_serviceValuetext">value</string>
     <string name="receptionestManageRequests_completeButtonText">Complete</string>
     <string name="changePassword_changeText">Change</string>
+    <string name="receptionist_menu_changepassword_text">Change Password</string>
+    <string name="receptionist_menu_logout_text">Logout</string>
     <string-array name="changed">
         <item>Changed For Receptionist</item>
         <item>Changed For Rooms</item>
