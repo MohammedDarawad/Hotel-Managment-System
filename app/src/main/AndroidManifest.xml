@@ -13,6 +13,9 @@
         android:theme="@style/Theme.HotelManagmentSystem"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".AlwanWork.Setting"
+            android:exported="false" />
+        <activity
             android:name=".ChangePassword"
             android:exported="false" />
         <activity
@@ -50,9 +53,6 @@
             android:exported="false" />
         <activity
             android:name=".packageServiceForManager.ViewServiceForManager"
-            android:exported="false" />
-        <activity
-            android:name=".AlwanWork.ViewChanged"
             android:exported="false" />
         <activity
             android:name=".ReserveList"

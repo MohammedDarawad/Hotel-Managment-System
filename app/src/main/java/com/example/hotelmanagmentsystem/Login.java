@@ -18,6 +18,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.hotelmanagmentsystem.AlwanWork.EmailAndPassword;
 import com.example.hotelmanagmentsystem.AlwanWork.Manegar;
 import com.example.hotelmanagmentsystem.AlwanWork.Sign_Up;
 import com.example.hotelmanagmentsystem.model.RequestQueueSingleton;
@@ -156,6 +157,7 @@ public class Login extends AppCompatActivity {
         if (userType == 0) {
             intent = new Intent(this, Manegar.class);
             intent.putExtra("emailAddress", emailAddress);
+            intent.putExtra("password", password);
         } else if (userType == 1) {
             intent = new Intent(this, ReceptionistHomePage.class);
             intent.putExtra("firstName", responceJsonObject.getJSONObject("user").getString("firstName"));

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/manager_Room"
+        android:title="Rooms">
+        <menu>
+            <item
+                android:id="@+id/manager_addRoom"
+                android:icon="@drawable/add_icon"
+                android:title="Add Room"></item>
+            <item
+                android:id="@+id/manager_viewRoom"
+                android:icon="@drawable/details_icon"
+                android:title="view Room"></item>
+        </menu>
+    </item>
+    <item android:id="@+id/manager_Receptionist"
+        android:title="Receptionists">
+        <menu>
+            <item
+                android:id="@+id/manager_addReceptionist"
+                android:icon="@drawable/add_icon"
+                android:title="Add Receptionist"></item>
+            <item
+                android:id="@+id/manager_viewReceptionist"
+                android:icon="@drawable/details_icon"
+                android:title="View Receptionist"></item>
+        </menu>
+    </item>
+    <item android:id="@+id/manager_Service"
+        android:title="Services">
+        <menu>
+            <item
+                android:id="@+id/manager_addService"
+                android:icon="@drawable/add_icon"
+                android:title="Add Service"></item>
+            <item
+                android:id="@+id/manager_viewService"
+                android:icon="@drawable/details_icon"
+                android:title="View Service"></item>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/manager_setting"
+        android:icon="@drawable/setting_icon"
+        android:title="Setting"></item>
+    <item
+        android:id="@+id/manager_logOut"
+        android:icon="@drawable/logout"
+        android:title="Log Out"></item>
+</menu>
