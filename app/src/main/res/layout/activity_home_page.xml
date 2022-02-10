@@ -15,7 +15,27 @@
         <include
             layout="@layout/main_toolpar"/>
 
+        <com.smarteist.autoimageslider.SliderView
+            android:id="@+id/slSlider"
+            android:layout_width="match_parent"
+            android:layout_height="508dp"
+            app:sliderAnimationDuration="600"
+            app:sliderAutoCycleDirection="back_and_forth"
+            app:sliderIndicatorAnimationDuration="600"
+            app:sliderIndicatorEnabled="true"
+            app:sliderIndicatorGravity="center_horizontal|bottom"
+            app:sliderIndicatorMargin="15dp"
+            app:sliderIndicatorOrientation="horizontal"
+            app:sliderIndicatorPadding="3dp"
+            app:sliderIndicatorRadius="2dp"
+            app:sliderIndicatorSelectedColor="#5A5A5A"
+            app:sliderIndicatorUnselectedColor="#FFF"
+            app:sliderScrollTimeInSec="1" />
+
+
     </LinearLayout>
+
+
 
     <RelativeLayout
         android:layout_width="300dp"
@@ -23,8 +43,10 @@
         android:layout_gravity="start"
         android:background="@android:color/white"
         >
-
-        <include layout="@layout/main_nav_drawer" />
+        <include
+            layout="@layout/main_nav_drawer"/>
     </RelativeLayout>
+
+
 
 </androidx.drawerlayout.widget.DrawerLayout>
