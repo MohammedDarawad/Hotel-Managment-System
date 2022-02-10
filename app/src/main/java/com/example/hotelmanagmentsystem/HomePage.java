@@ -29,7 +29,7 @@ import org.json.JSONException;
 //Omar Tawafshah
 public class HomePage extends AppCompatActivity {
     private DrawerLayout drawerLayout ;
-    private String email ;
+    private String uId ;
     private TextView tloginAndReserved ;
     private ImageView imloginAndReserved ;
     private TextView tsignUpAndLogout ;
@@ -52,15 +52,14 @@ public class HomePage extends AppCompatActivity {
         sliderView = findViewById(R.id.slSlider);
         gson = new Gson();
         Intent intent = getIntent();
-        if(intent == null){
-            email = "" ;
+        uId = intent.getStringExtra("uId");
+        if(uId == null){
             tloginAndReserved.setText("Log in");
             imloginAndReserved.setImageResource(R.drawable.ic_login);
             tsignUpAndLogout.setText("Sign Up");
             imsignUpAndLogout.setImageResource(R.drawable.ic_create);
 
         }else {
-            email = intent.getStringExtra("email");
             tloginAndReserved.setText("Reserved List ");
             imloginAndReserved.setImageResource(R.drawable.ic_login);
             tsignUpAndLogout.setText("Log Out");
@@ -131,36 +130,33 @@ public class HomePage extends AppCompatActivity {
 
     public void clickSearch(View view) {
         Intent intent = new Intent(this, Search.class);
+        intent.putExtra("uId" , uId);
         startActivity(intent);
     }
 
 
     public void showWeatherclick(View view) {
-        Intent intent = new Intent(this, HomePage.class);
+        Intent intent = new Intent(this, WeatherActivite.class);
         startActivity(intent);
     }
 
     public void clickLogin(View view) {
-        if(email == "") {
+        if(uId == null) {
             Intent intent = new Intent(this, Login.class);
-            intent.putExtra("email" , "");
             startActivity(intent);
-        }else if(email != ""){
+        }else{
             Intent intent = new Intent(this, ReserveList.class);
-            intent.putExtra("email" , email);
+            intent.putExtra("uId" , uId);
             startActivity(intent);
         }
     }
 
     public void clickSignUp(View view) {
-        if(email == "") {
+        if(uId == null) {
             Intent intent = new Intent(this, Sign_Up.class);
-            intent.putExtra("email" , "");
             startActivity(intent);
-
-        }else if(email != ""){
+        }else {
             Intent intent = new Intent(this, HomePage.class);
-            intent.putExtra("email" , "");
             startActivity(intent);
         }
     }

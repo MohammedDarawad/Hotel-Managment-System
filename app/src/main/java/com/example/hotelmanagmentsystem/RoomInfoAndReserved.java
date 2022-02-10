@@ -29,13 +29,12 @@ public class RoomInfoAndReserved extends AppCompatActivity {
     private EditText Room_Info ;
     private EditText first_Date ;
     private EditText Last_Date ;
-    Intent intentCom = getIntent();
     int RoomID ;
-    int rID = Integer.parseInt(intentCom.getStringExtra("rid"));
-    String uId = intentCom.getStringExtra("uId");
-    String date1 = intentCom.getStringExtra("date1");
-    String date2 = intentCom.getStringExtra("date2");
-    private String URL = "http://10.0.2.2/get-room-info.php?rId="+rID;
+    int rID;
+    String uId = "";
+    String date1 = "";
+    String date2 = "";
+    private String URL = "";
 
 
 
@@ -43,6 +42,12 @@ public class RoomInfoAndReserved extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_info_and_reserved);
+        Intent intentCom = getIntent();
+        rID = Integer.parseInt(intentCom.getStringExtra("rid"));
+         uId = intentCom.getStringExtra("uId");
+         date1 = intentCom.getStringExtra("date1");
+         date2 = intentCom.getStringExtra("date2");
+
         Room_Info = findViewById(R.id.Room_Info);
         first_Date= findViewById(R.id.first_Date);
         Last_Date= findViewById(R.id.Last_Date);

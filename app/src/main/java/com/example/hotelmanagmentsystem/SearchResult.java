@@ -35,10 +35,10 @@ import java.util.List;
 
 public class SearchResult extends AppCompatActivity{
 
-    Intent intentCom = getIntent();
-    String date1 = intentCom.getStringExtra("date1");
-    String date2 = intentCom.getStringExtra("date2");
-    String url = "http://10.0.2.2/test/getAllRoom.php?firstdate=" + date1 + "&Seconddate=" + date2;
+    String date1 = "";
+    String date2 = "";
+    String url ="";
+    String uId = "" ;
     List<Room> RoomList;
     RecyclerView recyclerView;
     SearchAdapter.RecyclerViewClickListener listener ;
@@ -47,6 +47,10 @@ public class SearchResult extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result);
+        Intent intentCom = getIntent();
+        date1  = intentCom.getStringExtra("date1");
+        date2 = intentCom.getStringExtra("date2");
+        uId = intentCom.getStringExtra("uId");
         recyclerView = findViewById(R.id.recyclerviewAllData);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -56,11 +60,13 @@ public class SearchResult extends AppCompatActivity{
     }
 
     public void getData() {
+        url =  "http://10.0.2.2/getAllRoom.php?firstdate=" + date1 + "&Seconddate=" + date2;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
                 try {
+                    System.out.println(response);
                     JSONArray array = new JSONArray(response);
                     for (int i = 0; i < array.length(); i++) {
                         JSONObject room = array.getJSONObject(i);
@@ -92,6 +98,9 @@ public class SearchResult extends AppCompatActivity{
             public void onClick(View view, int position) {
                 Intent intent = new Intent(getApplicationContext() , RoomInfoAndReserved.class);
                 intent.putExtra("rid",RoomList.get(position).getRid());
+                intent.putExtra("uId",uId);
+                intent.putExtra("date1",date1);
+                intent.putExtra("date2",date2);
                 startActivity(intent);
             }
         };

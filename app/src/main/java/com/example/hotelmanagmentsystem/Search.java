@@ -11,14 +11,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Search extends AppCompatActivity {
     String date1 = "";
+    String uId ="";
     String date2 = "";
     private CalendarView claendarview1;
     private CalendarView claendarview2;
+    Intent intent ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        intent =getIntent();
+        uId = intent.getStringExtra("uId");
         claendarview1 = findViewById(R.id.calendarView2);
         claendarview2 = findViewById(R.id.calendarView3);
         claendarview1.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -38,11 +43,12 @@ public class Search extends AppCompatActivity {
     }
 
     public void btnSerach(View view) {
-        if (date1 == "" && date2 == "") {
+        if (date1 == "" || date2 == "") {
             Toast.makeText(getApplicationContext(), "Please Enter All Correct Date", Toast.LENGTH_SHORT).show();
         } else {
             Intent intent = new Intent(this, SearchResult.class);
             intent.putExtra("date1", date1);
+            intent.putExtra("uId", uId);
             intent.putExtra("date2", date2);
             startActivity(intent);
         }
