@@ -84,6 +84,14 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
             }
         }) {
         };
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         RequestQueueSingleton.getInstance(context).addToRequestQueue(request);
     }
 

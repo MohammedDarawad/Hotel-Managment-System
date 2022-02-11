@@ -72,9 +72,9 @@ public class SearchResult extends AppCompatActivity{
                         JSONObject room = array.getJSONObject(i);
                         RoomList.add(new Room(room.getDouble("price"),room.getInt("floor"),room.getInt("rId")));
                     }
-                    setOnClickListener();
                     SearchAdapter adapter = new SearchAdapter(SearchResult.this,RoomList,listener);
                     recyclerView.setAdapter(adapter);
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -97,7 +97,7 @@ public class SearchResult extends AppCompatActivity{
             @Override
             public void onClick(View view, int position) {
                 Intent intent = new Intent(getApplicationContext() , RoomInfoAndReserved.class);
-                intent.putExtra("rid",RoomList.get(position).getRid());
+                intent.putExtra("rid",String.valueOf(RoomList.get(position).getRid()));
                 intent.putExtra("uId",uId);
                 intent.putExtra("date1",date1);
                 intent.putExtra("date2",date2);
