@@ -79,6 +79,12 @@
             android:name=".WeatherActivite"
             android:exported="false" />
         <activity
+            android:name=".RoomInfoAndReserved"
+            android:exported="false" />
+        <activity
+            android:name=".AllRoomImage"
+            android:exported="false" />
+        <activity
             android:name=".HomePage"
             android:exported="true">
             <intent-filter>

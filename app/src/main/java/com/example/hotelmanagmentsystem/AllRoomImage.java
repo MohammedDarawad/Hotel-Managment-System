@@ -19,12 +19,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 public class AllRoomImage extends AppCompatActivity {
-    Intent intent = getIntent();
-    String rId = intent.getStringExtra("rId");
+
     private SliderView sliderView;
     private String imageApiURL = "http://10.0.2.2/get-images.php?rId=";
     private ImageURLData[] imageURLs;
     private Gson gson;
+    String rId;
 
 
     @Override
@@ -32,6 +32,8 @@ public class AllRoomImage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_room_image);
         sliderView = findViewById(R.id.slSlider);
+        Intent intent = getIntent();
+        rId = intent.getStringExtra("rId");
         gson = new Gson();
         getImageURLs();
 
