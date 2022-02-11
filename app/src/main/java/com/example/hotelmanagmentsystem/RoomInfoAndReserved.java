@@ -29,25 +29,23 @@ public class RoomInfoAndReserved extends AppCompatActivity {
     private EditText Room_Info ;
     private EditText first_Date ;
     private EditText Last_Date ;
-    int RoomID ;
-    int rID;
-    String uId = "";
-    String date1 = "";
-    String date2 = "";
-    private String URL = "";
-
-
-
+    String uId = "" ;
+    String URL = "" ;
+    String date2 = "" ;
+    String date1 = "" ;
+    String rID = "" ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_room_info_and_reserved);
         Intent intentCom = getIntent();
-        rID = Integer.parseInt(intentCom.getStringExtra("rid"));
-         uId = intentCom.getStringExtra("uId");
-         date1 = intentCom.getStringExtra("date1");
-         date2 = intentCom.getStringExtra("date2");
+        rID = intentCom.getStringExtra("rId");
+        uId = intentCom.getStringExtra("uId");
 
+        System.out.println(uId);
+        date1 = intentCom.getStringExtra("date1");
+        date2 = intentCom.getStringExtra("date2");
+        URL = "http://10.0.2.2/get-room-info.php?rId="+rID;
+        setContentView(R.layout.activity_room_info_and_reserved);
         Room_Info = findViewById(R.id.Room_Info);
         first_Date= findViewById(R.id.first_Date);
         Last_Date= findViewById(R.id.Last_Date);
@@ -59,18 +57,18 @@ public class RoomInfoAndReserved extends AppCompatActivity {
     }
 
     private void setData() {
+        String alldata = "";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
                     String alldata = "";
                     JSONObject room = new JSONObject(response);
-                    RoomID = room.getInt("rId") ;
                     alldata += "The Room Id Is : "+String.valueOf(room.getInt("rId")) +"\n";
                     alldata += "The Room In Floor : "+String.valueOf(room.getInt("floor"))+"\n";
-                    alldata += "The Room Type Is : "+String.valueOf(room.getInt("type"))+"\n";
+                    alldata += "The Room Type Is : "+String.valueOf(room.getString("type"))+"\n";
                     alldata += "The Capacity For Room Is : "+String.valueOf(room.getInt("capacity"))+"\n";
-                    alldata += "The Price for Room Per One Day Is : "+String.valueOf(room.getInt("price"))+"\n";
+                    alldata += "The Price for Room Per One Day Is : "+String.valueOf(room.getDouble("price"))+"\n";
 
                     Room_Info.setText(alldata);
 
@@ -106,6 +104,7 @@ public class RoomInfoAndReserved extends AppCompatActivity {
 
                 }
             });
+            builder.show();
         }else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("You are sure to Reserved Room ?");
@@ -123,6 +122,7 @@ public class RoomInfoAndReserved extends AppCompatActivity {
 
                 }
             });
+            builder.show();
         }
     }
 
@@ -162,7 +162,7 @@ public class RoomInfoAndReserved extends AppCompatActivity {
 
                 Map<String, String> params = new HashMap<String, String>();
 
-                params.put("rId", String.valueOf(RoomID));
+                params.put("rId", rID);
                 params.put("uId", uId);
                 params.put("startDate", date1);
                 params.put("endDate", date2);
@@ -175,8 +175,8 @@ public class RoomInfoAndReserved extends AppCompatActivity {
     }
 
     public void ShowImageRoom(View view) {
-        Intent intent = new Intent(RoomInfoAndReserved.this , AllRoomImage.class);
-        intent.putExtra("rId",RoomID);
+        Intent intent = new Intent(this , AllRoomImage.class);
+        intent.putExtra("rId",rID);
         startActivity(intent);
 
 
