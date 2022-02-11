@@ -41,7 +41,7 @@ public class SearchResult extends AppCompatActivity{
     String uId = "" ;
     List<Room> RoomList;
     RecyclerView recyclerView;
-    SearchAdapter.RecyclerViewClickListener listener ;
+    SearchAdapter madapter ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,8 +72,20 @@ public class SearchResult extends AppCompatActivity{
                         JSONObject room = array.getJSONObject(i);
                         RoomList.add(new Room(room.getDouble("price"),room.getInt("floor"),room.getInt("rId")));
                     }
-                    SearchAdapter adapter = new SearchAdapter(SearchResult.this,RoomList,listener);
+                    SearchAdapter adapter = new SearchAdapter(SearchResult.this,RoomList);
                     recyclerView.setAdapter(adapter);
+                    adapter.setOnItemClickListener(new SearchAdapter.OnItemClickListenet() {
+                        @Override
+                        public void onItemClick(int position) {
+                            Intent intent = new Intent(getApplicationContext() , RoomInfoAndReserved.class);
+                            System.out.println(RoomList.get(position).getRid());
+                            intent.putExtra("rId",String.valueOf(RoomList.get(position).getRid()));
+                            intent.putExtra("uId",uId);
+                            intent.putExtra("date1",date1);
+                            intent.putExtra("date2",date2);
+                            startActivity(intent);
+                        }
+                    });
 
 
                 } catch (JSONException e) {
@@ -92,18 +104,6 @@ public class SearchResult extends AppCompatActivity{
 
     }
 
-    private void setOnClickListener() {
-        listener = new SearchAdapter.RecyclerViewClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                Intent intent = new Intent(getApplicationContext() , RoomInfoAndReserved.class);
-                intent.putExtra("rid",String.valueOf(RoomList.get(position).getRid()));
-                intent.putExtra("uId",uId);
-                intent.putExtra("date1",date1);
-                intent.putExtra("date2",date2);
-                startActivity(intent);
-            }
-        };
-    }
+
 
 }

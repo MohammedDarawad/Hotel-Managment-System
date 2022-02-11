@@ -27,17 +27,26 @@ import java.util.List;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchViewHolder>{
 
+
+    public interface OnItemClickListenet{
+        void onItemClick(int position);
+
+    }
+
+    public void setOnItemClickListener(OnItemClickListenet mlistener){
+        listener = mlistener;
+    }
+
     private Context context;
     private List<Room> RoomList;
     Gson gson = new Gson();
-    RecyclerViewClickListener listener;
+    private OnItemClickListenet listener;
     ImageURLData[] imageURLs;
     int rid;
 
-    public SearchAdapter(Context context, List<Room> RoomList , RecyclerViewClickListener listener ) {
+    public SearchAdapter(Context context, List<Room> RoomList) {
         this.context = context;
         this.RoomList = RoomList;
-        this.listener = listener;
     }
 
     @NonNull
@@ -45,7 +54,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
     public SearchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.search_list, null);
-        return new SearchViewHolder(view);
+        return new SearchViewHolder(view,listener);
     }
 
     @Override
@@ -85,13 +94,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
         }) {
         };
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
         RequestQueueSingleton.getInstance(context).addToRequestQueue(request);
     }
 
@@ -100,26 +102,28 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
         return RoomList.size();
     }
 
-    public interface RecyclerViewClickListener{
-        void onClick(View view , int position);
 
-    }
-
-    class SearchViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class SearchViewHolder extends RecyclerView.ViewHolder{
         TextView textViewFloor, textViewPrice , textViewRid;
         ImageView imageView;
-        public SearchViewHolder(View itemView) {
+        public SearchViewHolder(View itemView,OnItemClickListenet listener) {
             super(itemView);
             textViewFloor = itemView.findViewById(R.id.textViewFloor);
             textViewPrice = itemView.findViewById(R.id.textViewPrice);
             imageView = itemView.findViewById(R.id.imageView);
             textViewRid = itemView.findViewById(R.id.textViewRid);
-            itemView.setOnClickListener(this);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(listener != null){
+                        int pos = getAdapterPosition();
+                        if(pos != RecyclerView.NO_POSITION){
+                            listener.onItemClick(pos);
+                        }
+                    }
+                }
+            });
         }
 
-        @Override
-        public void onClick(View view) {
-            listener.onClick(view,getAdapterPosition());
-        }
     }
 }
